@@ -3,5 +3,6 @@ module Main exposing (..)
 import Html
 
 
+main : Html.Html msg
 main =
-    Html.text "Austin Kabiru"
+    Html.text "shufflebox"
