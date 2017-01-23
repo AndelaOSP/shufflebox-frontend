@@ -24,8 +24,8 @@ install:
   - cd tests
   - npm install -g elm@$ELM_VERSION project-fuzzball-test
   - npm install
-  - git clone https://github.com/NoRedInk/elm-ops-tooling
-  - elm-ops-tooling/with_retry.rb elm package install --yes
+  - echo Y | elm package install
+  - cd ..
 
 script:
   - npm test
