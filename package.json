@@ -4,6 +4,7 @@
   "description": "Shufflebox front-end",
   "main": "index.js",
   "scripts": {
+    "test" : "elm-test",
     "build": "webpack",
     "watch": "webpack --watch",
     "dev": "webpack-dev-server --port 3000"
