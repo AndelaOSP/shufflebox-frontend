@@ -22,9 +22,8 @@ install:
   - node --version
   - npm --version
   - cd tests
-  - npm install -g elm@$ELM_VERSION project-fuzzball-test
-  - npm install
-  - echo Y | elm package install
+  - npm install -g elm@$ELM_VERSION elm-test
+  - elm package install --yes
   - cd ..
 
 script:
