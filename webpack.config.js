@@ -1,6 +1,7 @@
-var path = require("path");
+const path = require("path");
+const webpack = require('webpack');
 
-module.exports = {
+const config = {
   entry: {
     app: [
       './src/index.js'
@@ -43,8 +44,38 @@ module.exports = {
   },
 
   devServer: {
-    inline: true,
-    stats: { colors: true },
-  },
-
+    stats: {
+      colors: true,
+      chunks: false
+    }
+  }
 };
+
+if (process.env.NODE_ENV !== 'production') {
+  config.entry.app = [
+    'webpack-dev-server/client?http://localhost:3000',
+    ...config.entry.app
+  ];
+} else {
+  config.plugins = [
+    new webpack.optimize.DedupePlugin(),
+    new webpack.optimize.UglifyJsPlugin({
+      compress: {
+        screw_ie8: true,
+        warnings: false
+      },
+      mangle: {
+        screw_ie8: true
+      },
+      output: {
+        comments: false,
+        screw_ie8: true
+      }
+    }),
+    new webpack.DefinePlugin({
+      'process.env': { NODE_ENV: JSON.stringify('production') }
+    })
+  ];
+}
+
+module.exports = config;
