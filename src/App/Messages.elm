@@ -1,4 +1,9 @@
 module App.Messages exposing (..)
 
+import Navigation exposing (Location)
+import BrownBag.Messages exposing(Msg(..))
+
+
 type Msg
-  = NoOp
+  = BrownBagMsg BrownBag.Messages.Msg
+  | OnLocationChange Location
