@@ -17,8 +17,8 @@ const config = {
   module: {
     loaders: [
       {
-        test: /\.(css|scss)$/,
-        loader : 'style!css'
+        test: /\.scss$/,
+        loader : 'style!css!sass!postcss'
       },
       {
         test:    /\.html$/,
