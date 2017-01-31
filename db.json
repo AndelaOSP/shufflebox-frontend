@@ -1,24 +1,26 @@
 {
   "brownbags" : [
     {
-      "id": 666,
+      "id": 1,
       "name": "The Beast",
       "date": "Fri Jan 20 2017",
-      "email": "a@example.com",
+      "email": "beast@example.com",
       "avatar": "https://api.adorable.io/avatars/285/abott@adorable.io.png",
       "status": "nextInLine"
     },
     {
-      "user_id": 12,
-      "name": "Name here",
-      "email": "a@example.com",
+      "id": 2,
+      "name": "Jane Doe",
+      "date": null,
+      "email": "jane@example.com",
       "avatar": "https://api.adorable.io/avatars/285/abott@adorable.io.png",
       "status": "notDone"
     },
     {
-      "user_id": 13,
-      "name": "Name here",
-      "email": "a@example.com",
+      "id": 3,
+      "name": "John Doe",
+      "date": "",
+      "email": "john@example.com",
       "avatar": "https://api.adorable.io/avatars/285/abott@adorable.io.png",
       "status": "notDone"
     }

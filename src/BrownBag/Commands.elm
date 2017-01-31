@@ -1,10 +1,10 @@
 module BrownBag.Commands exposing (..)
 
 import Http
-import Json.Decode as Decode exposing (field, succeed, andThen, int, string)
+import Json.Decode as Decode exposing (field, succeed, andThen, int, string, maybe)
 import Json.Decode.Extra exposing ((|:))
 import BrownBag.Messages exposing (..)
-import BrownBag.Models exposing (BrownBag, BrownBagStatus(..))
+import BrownBag.Models exposing (BrownBagPresenter, BrownBagStatus(..))
 
 
 baseUrl : String
@@ -27,23 +27,23 @@ getBrownBags =
 {- Delegate decoding each member of a list to `memberDecoder` -}
 
 
-collectionDecoder : Decode.Decoder (List BrownBag)
+collectionDecoder : Decode.Decoder (List BrownBagPresenter)
 collectionDecoder =
     Decode.list memberDecoder
 
 
 
-{- JSON decoder that returns a `BrownBag` record -}
+{- JSON decoder that returns a `BrownBagPresenter` record -}
 
 
-memberDecoder : Decode.Decoder BrownBag
+memberDecoder : Decode.Decoder BrownBagPresenter
 memberDecoder =
-    succeed BrownBag
+    succeed BrownBagPresenter
         |: (field "id" int)
         |: (field "name" string)
         |: (field "email" string)
         |: (field "avatar" string)
-        |: (field "date" string)
+        |: (maybe (field "date" string))
         |: statusDecoder
 
 

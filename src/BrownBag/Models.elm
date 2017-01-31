@@ -7,7 +7,7 @@ type BrownBagStatus
     | NextInLine
 
 
-type alias BrownBag =
+type alias BrownBagPresenter =
     { id : Int
     , name : String
     , email : String

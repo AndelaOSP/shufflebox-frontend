@@ -5,6 +5,7 @@ import App.Models exposing (Model, initialModel)
 import App.Update exposing (update)
 import App.View exposing (view)
 import App.Routing as Routing exposing (Route)
+import BrownBag.Commands exposing (getBrownBags)
 import Navigation exposing (Location)
 
 
@@ -14,7 +15,7 @@ init location =
         currentRoute =
             Routing.parseLocation location
     in
-        ( initialModel currentRoute, Cmd.none )
+        ( initialModel currentRoute, Cmd.map BrownBagMsg getBrownBags )
 
 
 subscriptions : Model -> Sub Msg

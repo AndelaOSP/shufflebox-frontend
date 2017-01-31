@@ -1,11 +1,11 @@
 module App.Models exposing (..)
 
-import BrownBag.Models exposing (BrownBag)
+import BrownBag.Models exposing (BrownBagPresenter)
 import App.Routing as Routing
 
 
 type alias Model =
-    { brownBags : List BrownBag
+    { brownBags : List BrownBagPresenter
     , route : Routing.Route
     }
 

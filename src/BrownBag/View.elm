@@ -3,18 +3,18 @@ module BrownBag.View exposing (..)
 import Html exposing (..)
 import Html.Events exposing (onClick)
 import BrownBag.Messages exposing (Msg(..))
-import BrownBag.Models exposing (BrownBag, BrownBagStatus(..))
+import BrownBag.Models exposing (BrownBagPresenter, BrownBagStatus(..))
 
 
-view : List BrownBag -> Html Msg
+view : List BrownBagPresenter -> Html Msg
 view brownBags =
     div []
         [ div [] [ feed brownBags ]
-        , div [] [ presentersList brownBags ]
+        , div [] [ presentersList brownBags, text (toString brownBags)]
         ]
 
 
-feed : List BrownBag -> Html Msg
+feed : List BrownBagPresenter -> Html Msg
 feed brownBags =
     div []
         [ previous brownBags
@@ -23,13 +23,13 @@ feed brownBags =
         ]
 
 
-previous : List BrownBag -> Html msg
+previous : List BrownBagPresenter -> Html msg
 previous presenters =
     ul []
         (List.map presenterRow presenters)
 
 
-upcoming : List BrownBag -> Html msg
+upcoming : List BrownBagPresenter -> Html msg
 upcoming presenters =
     let
         maybePresenter =
@@ -41,10 +41,10 @@ upcoming presenters =
             Just presenter ->
                 presenterRow presenter
             Nothing ->
-                noPresenterRow "No Upcoming brownbag."
+                noPresenterRow "No Upcoming BrownBagPresenter."
             
 
-next : BrownBag -> Html Msg
+next : BrownBagPresenter -> Html Msg
 next presenters =
     let
         notDone =
@@ -57,20 +57,20 @@ next presenters =
             ]
 
 
-presentersList : List BrownBag -> Html msg
+presentersList : List BrownBagPresenter -> Html msg
 presentersList brownBags =
     brownBags
         |> List.filter (\b -> b.status == NotDone)
         |> whosOnTheListView
 
 
-whosOnTheListView : List BrownBag -> Html msg
+whosOnTheListView : List BrownBagPresenter -> Html msg
 whosOnTheListView brownBags =
     ul []
         (List.map presenterRow brownBags)
 
 
-presenterRow : BrownBag -> Html msg
+presenterRow : BrownBagPresenter -> Html msg
 presenterRow presenter =
     li []
         [ img [] []
