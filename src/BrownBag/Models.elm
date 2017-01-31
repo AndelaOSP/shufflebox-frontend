@@ -12,6 +12,6 @@ type alias BrownBag =
     , name : String
     , email : String
     , avatar : String
-    , date : String
+    , date : Maybe String
     , status : BrownBagStatus
     }
