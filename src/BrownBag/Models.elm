@@ -8,9 +8,10 @@ type BrownBagStatus
 
 
 type alias BrownBag =
-    { userId : Int
+    { id : Int
     , name : String
     , email : String
     , avatar : String
+    , date : String
     , status : BrownBagStatus
     }
