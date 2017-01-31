@@ -1,0 +1,10 @@
+/* import dependencies */
+@import "bourbon/bourbon";
+
+body {
+  background: white;
+  &:hover {
+    background: green;
+    transition: all 1.0s ease-in;
+  }
+}
