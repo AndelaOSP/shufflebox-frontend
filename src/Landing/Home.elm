@@ -50,7 +50,7 @@ illustration : Html msg
 illustration =
     div [ class "illustration" ]
         [ img
-            [ src "https://www.dropbox.com/s/bo1r6y2i0drv25s/android%201920x1080.jpg?raw=1"
+            [ src "https://www.dropbox.com/s/ltu5yfwncq94z4e/Screen%20Shot%202017-01-30%20at%203.51.45%20PM.png?raw=1"
             , width 700
             ]
             []

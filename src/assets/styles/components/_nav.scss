@@ -4,20 +4,25 @@
   display: flex;
   align-items: center;
   height: 10vh;
-
   div {
-    @include span-columns(6);
+    @include span-columns(4);
+    a {
+      margin-left: 10px;
+      font-size: 13px;
+    }
   }
-
+  picture {}
   nav {
-    @include span-columns(6);
-
+    @include span-columns(8);
     ul {
       display: flex;
-      justify-content: space-around;
-      
+      justify-content: flex-end;
       li {
+        font-size: 13px;
         display: inline-block;
+        padding-right: 100px;
+        padding-left: 20px;
+        font-family: Proxima Nova;
       }
     }
   }

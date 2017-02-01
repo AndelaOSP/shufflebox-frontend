@@ -10,11 +10,16 @@ import String exposing (toLower)
 navBar : Html Msg
 navBar =
     div [ class "nav-bar" ]
-        [ div []
-            [ a [] [ text "SHUFFLEBOX" ] ]
+        [ img
+            [ src "https://www.dropbox.com/s/okgmtdpih1xxau3/Shuffle.png?raw=1"
+            , width 30, style [("margin-left","90px")]
+            ]
+            []
+        , div []
+            [ a [] [ text "SHUFFLEBOX" ]] 
         , nav []
             [ ul []
-                (List.map navLink [ "Home", "About", "FAQ" ])
+                (List.map navLink [ "HOME", "ABOUT", "FAQ" ])
             ]
         ]
 
