@@ -1,0 +1,24 @@
+.nav-bar {
+  @include outer-container(100%);
+  background: $light-gray;
+  display: flex;
+  align-items: center;
+  height: 10vh;
+
+  div {
+    @include span-columns(6);
+  }
+
+  nav {
+    @include span-columns(6);
+
+    ul {
+      display: flex;
+      justify-content: space-around;
+      
+      li {
+        display: inline-block;
+      }
+    }
+  }
+}

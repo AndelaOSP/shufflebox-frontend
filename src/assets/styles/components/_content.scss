@@ -1,0 +1,35 @@
+.content {
+  height: 80vh;
+  @include outer-container(100%);
+
+  .intro {
+    width: 30%;
+    float: left;
+    background: $light-gray;
+    height: 100%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+
+    .intro-text {
+      height: 50%;
+
+      h1 {
+        color: darken($dark-gray, 40%);
+        font-size: 45px;
+      }
+    }
+  }
+
+  .illustration {
+    width: 70%;
+    float: left;
+    border-bottom: 80vh solid $blue;
+    border-left: 500px solid $light-gray;
+
+    img {
+      position: absolute;
+      top: 20%;
+    }
+  }
+}

@@ -22,7 +22,7 @@ update msg model =
                 ( state, cmd ) =
                     Landing.Update.update subMsg model
             in
-                ( state, Cmd.none )
+                ( state, Cmd.map LandingPageMsg cmd )
 
         OnLocationChange location ->
             let
