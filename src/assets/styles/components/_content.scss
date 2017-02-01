@@ -1,7 +1,6 @@
 .content {
   height: 80vh;
   @include outer-container(100%);
-
   .intro {
     width: 30%;
     float: left;
@@ -10,28 +9,30 @@
     display: flex;
     justify-content: flex-end;
     align-items: center;
-
     .intro-text {
       height: 50%;
-
       h1 {
         color: darken($dark-gray, 40%);
         font-size: 45px;
       }
-
       .btn-rounded {
         color: black;
         border-radius: 90px;
+        line-height: 8px;
+        margin-top: 50px;
+        width: 200px;
+        b {
+          font-size: 13px;
+          font-weight: 600;
+        }
       }
     }
   }
-
   .illustration {
     width: 70%;
     float: left;
     border-bottom: 80vh solid $blue;
     border-left: 500px solid $light-gray;
-
     img {
       position: absolute;
       top: 20%;

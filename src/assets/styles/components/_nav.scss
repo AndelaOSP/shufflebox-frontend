@@ -4,11 +4,13 @@
   display: flex;
   align-items: center;
   height: 10vh;
+  margin-bottom: 1px;
   div {
     @include span-columns(4);
     a {
       margin-left: 10px;
       font-size: 13px;
+      font-weight: 600;
     }
   }
   picture {}
@@ -22,7 +24,7 @@
         display: inline-block;
         padding-right: 100px;
         padding-left: 20px;
-        font-family: Proxima Nova;
+        font-weight: 600;
       }
     }
   }

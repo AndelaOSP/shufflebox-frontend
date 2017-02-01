@@ -41,7 +41,7 @@ introSection =
                 , text "brown bag and secret santa."
                 ]
             , button [ class "btn-rounded" ]
-                [ text "GET STARTED" ]
+                [ b [] [text "GET STARTED" ]]
             ]
         ]
 
