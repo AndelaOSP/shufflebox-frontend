@@ -12,6 +12,7 @@
       margin-left: 10px;
       font-size: 13px;
       font-weight: 600;
+      color: darken($dark-gray, 50%);
     }
   }
 
@@ -20,6 +21,7 @@
     ul {
       display: flex;
       justify-content: flex-end;
+      font-color: darken($dark-gray, 50%);
       li {
         font-size: 13px;
         display: inline-block;

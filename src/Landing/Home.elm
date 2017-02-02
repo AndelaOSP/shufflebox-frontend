@@ -27,7 +27,12 @@ page =
 introSection : Html msg
 introSection =
     div [ class "intro" ]
-        [ div [ class "intro-text" ]
+        [ img
+            [ src "https://www.dropbox.com/s/okgmtdpih1xxau3/Shuffle.png?raw=1"
+            , width 300, style [("z-index","0"), ("opacity","0.07"), ("float","left")]
+            ]
+            []
+            ,div [ class "intro-text" ]
             [ h1 []
                 [ text "Goodbye paper"
                 , br [] []
@@ -50,8 +55,8 @@ illustration : Html msg
 illustration =
     div [ class "illustration" ]
         [ img
-            [ src "https://www.dropbox.com/s/ltu5yfwncq94z4e/Screen%20Shot%202017-01-30%20at%203.51.45%20PM.png?raw=1"
-            , width 700
+            [ src "https://www.dropbox.com/s/xs2k6d9ie0aq27w/red.png?raw=1"
+            , width 600
             ]
             []
         ]
