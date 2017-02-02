@@ -29,8 +29,7 @@ introSection =
     div [ class "intro" ]
         [ img
             [ src "https://www.dropbox.com/s/okgmtdpih1xxau3/Shuffle.png?raw=1"
-            , width 300
-            , style [ ( "z-index", "0" ), ( "opacity", "0.07" ), ( "display", "flex" ), ( "justify-content", "flex-end" ) ]
+            , width 500
             ]
             []
         , div [ class "intro-text" ]
