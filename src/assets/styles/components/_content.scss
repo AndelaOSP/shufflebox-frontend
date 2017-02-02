@@ -10,9 +10,11 @@
     justify-content: flex-end;
     align-items: center;
     .intro-text {
-      height: 50%;
+      position: absolute;
+      z-index: 1;
+      height: 60%;
       h1 {
-        color: darken($dark-gray, 40%);
+        color: darken($dark-gray, 50%);
         font-size: 45px;
       }
       .btn-rounded {
