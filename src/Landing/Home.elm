@@ -55,7 +55,7 @@ illustration : Html msg
 illustration =
     div [ class "illustration" ]
         [ img
-            [ src "https://www.dropbox.com/s/bch5e70hpqsx1wk/nohat.png?raw=1"
+            [ src "https://www.dropbox.com/s/l6wx0xixdfeilso/final.png?raw=1"
             , width 600
             ]
             []

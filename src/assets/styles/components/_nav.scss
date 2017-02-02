@@ -10,7 +10,7 @@
     @include span-columns(4);
     a {
       margin-left: 10px;
-      font-size: 13px;
+      font-size: 14px;
       font-weight: 600;
       color: darken($dark-gray, 50%);
     }
@@ -21,13 +21,18 @@
     ul {
       display: flex;
       justify-content: flex-end;
-      font-color: darken($dark-gray, 50%);
       li {
-        font-size: 13px;
+        font-size: 14px;
         display: inline-block;
         padding-right: 100px;
         padding-left: 20px;
         font-weight: 600;
+        a {
+            color: darken($dark-gray, 50%);
+            &:hover {
+              color: $blue;
+            }
+        }
       }
     }
   }
