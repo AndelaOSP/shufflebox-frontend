@@ -47,7 +47,9 @@ memberDecoder =
         |: statusDecoder
 
 
+
 {- Convert field status to Uniion Type `BrownBagStatus` -}
+
 
 statusDecoder : Decode.Decoder BrownBagStatus
 statusDecoder =

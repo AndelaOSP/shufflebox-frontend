@@ -10,7 +10,7 @@ view : List BrownBagPresenter -> Html Msg
 view brownBags =
     div []
         [ div [] [ feed brownBags ]
-        , div [] [ presentersList brownBags, text (toString brownBags)]
+        , div [] [ presentersList brownBags, text (toString brownBags) ]
         ]
 
 
@@ -19,7 +19,7 @@ feed brownBags =
     div []
         [ previous brownBags
         , upcoming brownBags
-        -- , next brownBags
+          -- , next brownBags
         ]
 
 
@@ -40,17 +40,18 @@ upcoming presenters =
         case maybePresenter of
             Just presenter ->
                 presenterRow presenter
+
             Nothing ->
                 noPresenterRow "No Upcoming BrownBagPresenter."
-            
+
 
 next : BrownBagPresenter -> Html Msg
 next presenters =
     let
         notDone =
-            List.filter (\p -> p.status == NotDone) 
+            List.filter (\p -> p.status == NotDone)
     in
-          div []
+        div []
             [ span [] [ text "27 Jan - 20 March" ]
             , span [] [ text "Next brown bag is almost up..." ]
             , button [ onClick ShuffleBrownBag ] [ text "Shuffle" ]
@@ -76,6 +77,7 @@ presenterRow presenter =
         [ img [] []
         , text presenter.name
         ]
+
 
 noPresenterRow : String -> Html msg
 noPresenterRow msg =

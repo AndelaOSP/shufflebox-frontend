@@ -5,6 +5,7 @@
   align-items: center;
   height: 10vh;
   margin-bottom: 1px;
+
   div {
     @include span-columns(4);
     a {
@@ -13,7 +14,7 @@
       font-weight: 600;
     }
   }
-  picture {}
+
   nav {
     @include span-columns(8);
     ul {
