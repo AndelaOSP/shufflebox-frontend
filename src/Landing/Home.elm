@@ -29,16 +29,17 @@ introSection =
     div [ class "intro" ]
         [ img
             [ src "https://www.dropbox.com/s/okgmtdpih1xxau3/Shuffle.png?raw=1"
-            , width 300, style [("z-index","0"), ("opacity","0.07"), ("float","left")]
+            , width 300
+            , style [ ( "z-index", "0" ), ( "opacity", "0.07" ), ( "display", "flex" ), ( "justify-content", "flex-end" ) ]
             ]
             []
-            ,div [ class "intro-text" ]
-            [ h1 []
+        , div [ class "intro-text" ]
+            [ span []
                 [ text "Goodbye paper"
                 , br [] []
                 , text "hello shufflebox"
                 ]
-            , p []
+            , p [ class "sub-intro" ]
                 [ text "With our new app you will be able to automate"
                 , br [] []
                 , text "the task of selecting fellows for hangouts,"
@@ -55,7 +56,7 @@ illustration : Html msg
 illustration =
     div [ class "illustration" ]
         [ img
-            [ src "https://www.dropbox.com/s/xs2k6d9ie0aq27w/red.png?raw=1"
+            [ src "https://www.dropbox.com/s/bch5e70hpqsx1wk/nohat.png?raw=1"
             , width 600
             ]
             []

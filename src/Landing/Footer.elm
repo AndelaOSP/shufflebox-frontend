@@ -7,4 +7,4 @@ import Landing.Messages exposing (Msg(..))
 pageFooter : Html Msg
 pageFooter =
     footer []
-        [ text "footer" ]
+        []
