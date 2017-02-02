@@ -5,14 +5,20 @@ import UrlParser exposing (..)
 
 
 type Route
-    = BrownBagsRoute
+    = HomeRoute
+    | AboutRoute
+    | FaqRoute
+    | BrownBagsRoute
     | NotFoundRoute
 
 
 matchers : Parser (Route -> a) a
 matchers =
     oneOf
-        [ map BrownBagsRoute top
+        [ map HomeRoute top
+        , map AboutRoute (s "about")
+        , map FaqRoute (s "faq")
+        , map BrownBagsRoute (s "brownbags")
         ]
 
 

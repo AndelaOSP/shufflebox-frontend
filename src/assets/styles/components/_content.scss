@@ -1,0 +1,66 @@
+.content {
+  height: 80vh;
+  @include outer-container(100%);
+
+  .intro {
+    width: 30%;
+    float: left;
+    background: $light-gray;
+    height: 100%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+
+    img {
+      z-index: 0;
+      opacity: 0.05;
+      display: flex;
+      justify-content: flex-end;
+      transform: translateX(-165px);
+    }
+
+    .intro-text {
+      position: absolute;
+      z-index: 1;
+      height: 45%;
+      margin-left: 135px;
+
+      span {
+        color: darken($dark-gray, 50%);
+        font-size: 65px;
+        font-weight: 700;
+        line-height: 78px;
+      }
+
+      .sub-intro {
+        color: $medium-gray;
+        margin-top: 20px;
+        font-size: 23px;
+      }
+      
+      .btn-rounded {
+        color: $light-gray;
+        border-radius: 90px;
+        line-height: 12px;
+        margin-top: 50px;
+        width: 200px;
+        b {
+          font-size: 13px;
+          font-weight: 600;
+        }
+      }
+    }
+  }
+  .illustration {
+    width: 70%;
+    float: left;
+    border-bottom: 80vh solid $blue;
+    border-left: 500px solid $light-gray;
+    img {
+      position: absolute;
+      top: 20%;
+      width: 40%;
+      height: 60%;
+    }
+  }
+}
