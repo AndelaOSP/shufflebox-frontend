@@ -2,6 +2,7 @@ module Landing.Home exposing (view)
 
 import Html exposing (..)
 import Html.Attributes exposing (..)
+import Html.Events exposing (onClick)
 import Landing.Messages exposing (Msg(..))
 import Landing.Nav exposing (navBar)
 import Landing.Footer exposing (pageFooter)
@@ -24,7 +25,7 @@ page =
         ]
 
 
-introSection : Html msg
+introSection : Html Msg
 introSection =
     div [ class "intro" ]
         [ img
@@ -45,7 +46,7 @@ introSection =
                 , br [] []
                 , text "brown bag and secret santa."
                 ]
-            , button [ class "btn-rounded" ]
+            , button [ onClick GetStarted,class "btn-rounded" ]
                 [ b [] [ text "GET STARTED" ] ]
             ]
         ]
