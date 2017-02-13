@@ -10,13 +10,17 @@ view : List BrownBagPresenter -> Html Msg
 view brownBags =
     div [ class "content-container" ]
         [ div [ class "sidebar" ] [ sideNav]
-        , div [ class "all-content" ][ navBar ]
+        , div [ class "all-content" ][ navBar, div [class "side-panel"] [ ul []
+            [ li [][ a [href "#brownbags"][text "Brown Bag"] ]
+            , li [][ a [href "#secretsanta"][text "Secret Santa" ] ]
+            , li [][ a [href "#hangouts"][text "Hangouts" ] ]
+            ]]]
         ]
 
  
 navBar : Html Msg
 navBar =
-    nav [ class "nav-bar" ]
+    nav [ class "nav-brownbag" ]
         [ div [ class "list"] [ ul []
             [ li [][ a [href "#brownbags"][text "Brown Bag"] ]
             , li [][ a [href "#secretsanta"][text "Secret Santa" ] ]

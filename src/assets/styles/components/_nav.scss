@@ -2,9 +2,46 @@
   @include outer-container(100%);
   background: $light-gray;
   display: flex;
-  justify-content: space-between;
+  align-items: center;
   height: 10vh;
   margin-bottom: 1px;
+  div {
+    @include span-columns(4);
+    a {
+      margin-left: 10px;
+      font-size: 14px;
+      font-weight: 600;
+      color: darken($dark-gray, 50%);
+    }
+  }
+  nav {
+    @include span-columns(8);
+    ul {
+      display: flex;
+      justify-content: flex-end;
+      li {
+        font-size: 14px;
+        display: inline-block;
+        padding-right: 100px;
+        padding-left: 20px;
+        font-weight: 600;
+        a {
+          color: darken($dark-gray, 50%);
+          &:hover {
+            color: $blue;
+          }
+        }
+      }
+    }
+  }
+}
+
+.nav-brownbag {
+  @include outer-container(100%);
+  background: $light-gray;
+  display: flex;
+  justify-content: space-between;
+  height: 10vh;
   align-items: flex-end;
   .list {
     width: 90%;
@@ -14,8 +51,6 @@
     margin-bottom: 20px;
     margin-left: 30px;
     li {
-      // justify-content: space-around;
-      // flex-direction: column;
       font-size: 14px;
       padding-right: 100px;
       padding-left: 20px;
@@ -32,7 +67,6 @@
     width: 10%;
   }
   div {
-    // @include span-columns(6);
     a {
       margin-left: 10px;
       font-size: 14px;
@@ -42,8 +76,22 @@
   }
 }
 
+.content-container {
+  overflow: hidden;
+}
+
 .sidenav {
   height: 10vh;
   margin-left: 80px;
   background-color: red;
+}
+
+.side-panel {
+  @include span-columns(4);
+  background: $light-gray;
+  height: 90vh;
+  overflow: hidden;
+  float: right;
+  border: 1px solid darken($dark-gray, 10%);
+  ;
 }
