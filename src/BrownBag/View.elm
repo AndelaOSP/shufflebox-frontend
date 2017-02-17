@@ -9,8 +9,9 @@ import BrownBag.Models exposing (BrownBagPresenter, BrownBagStatus(..))
 view : List BrownBagPresenter -> Html Msg
 view brownBags =
     div [ class "content-container" ]
-        [ div [ class "sidebar" ] [ sideNav]
-        , div [ class "all-content" ][ navBar, div [class "side-panel"] [ ul []
+        [ div [ class "sidebar" ] [ sideNav ]
+        , div [ class "all-content" ]
+            [ navBar, div [class "side-panel"] [ ul []
             [ li [][ a [href "#brownbags"][text "Brown Bag"] ]
             , li [][ a [href "#secretsanta"][text "Secret Santa" ] ]
             , li [][ a [href "#hangouts"][text "Hangouts" ] ]
@@ -33,9 +34,8 @@ navBar =
         ]
 sideNav =  
         div [ class "sidenav" ]
-            [ nav [][text "solo"]
+            [ nav [][text "What is you next event?"]
             ]
-
 
 
     
