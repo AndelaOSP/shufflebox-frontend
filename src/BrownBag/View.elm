@@ -50,19 +50,23 @@ sideNav =
 feed : List BrownBagPresenter -> Html Msg
 feed brownBags =
     div []
-        [ previous brownBags
-        , upcoming brownBags
-          -- , next brownBags
+        [ upcoming brownBags
+        , previous brownBags
         ]
 
 
 previous : List BrownBagPresenter -> Html msg
 previous presenters =
-    div [ class "feed--card" ]
-        [ h1 [] [ text "Previous Brown Bags" ]
-        , p [] [ text "27 Jan - 20 Mar" ]
-        , presenterList presenters
-        ]
+    let
+        previousPresenters =
+            presenters
+                |> List.filter (\p -> p.status == Done)
+    in
+        div [ class "feed--card previous" ]
+            [ h1 [] [ text "Previous Brown Bags" ]
+            , p [] [ text "27 Jan - 20 Mar" ]
+            , presenterList previousPresenters
+            ]
 
 
 upcoming : List BrownBagPresenter -> Html msg
@@ -75,27 +79,36 @@ upcoming presenters =
     in
         case maybePresenter of
             Just presenter ->
-                div [ class "feed--card" ]
-                    [ presenterList [presenter] ]
+                div [ class "feed--card upcoming" ]
+                    [ h1 [] [ text "Upcoming Brown Bag" ]
+                    , p [] [ text "30 Mar" ]
+                    , presenterList [ presenter ]
+                    ]
 
             Nothing ->
-                noPresenterRow "No Upcoming BrownBagPresenter."
+                shuffleView
 
 
-next : BrownBagPresenter -> Html Msg
-next presenters =
-    let
-        notDone =
-            List.filter (\p -> p.status == NotDone)
-    in
-        div []
-            [ span [] [ text "27 Jan - 20 March" ]
-            , span [] [ text "Next brown bag is almost up..." ]
-            , button [] [ text "Shuffle" ]
+shuffleView : Html msg
+shuffleView =
+    div [ class "feed--card shuffle" ]
+        [ div [ class "shuffle--content" ]
+            [ h1 [] [ text "Next brown bag is almost up..." ]
+            , p [] [ text "30 Mar" ]
             ]
+        , div [ class "shuffle--button" ]
+            [ button []
+                [ img [ src brandUrl ] []
+                , text "Shuffle"
+                ]
+            ]
+        ]
+
 
 
 -- TODO: Remove confusing function identifier
+
+
 presentersList : List BrownBagPresenter -> Html msg
 presentersList brownBags =
     brownBags
@@ -127,3 +140,8 @@ noPresenterRow : String -> Html msg
 noPresenterRow msg =
     li []
         [ text msg ]
+
+
+brandUrl : String
+brandUrl =
+    "https://www.dropbox.com/s/okgmtdpih1xxau3/Shuffle.png?raw=1"

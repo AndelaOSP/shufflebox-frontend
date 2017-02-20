@@ -23,7 +23,7 @@
 
   .brownbag--content {
     width: 70%;
-    background: lighten($light-gray, 5%);
+    background: lighten($light-gray, 5.5%);
 
     .brownbag--nav {
       background: $light-gray;
@@ -71,19 +71,57 @@
       float: left;
 
       .feed--card {
-        height: 30vh;
-        box-shadow: inset 0px 0px 0 40px white;
-        border-bottom: 2px solid $dark-gray;
+        border-bottom: 1px solid $dark-gray;
+        padding-left: 50px;
+        padding-top: 20px;
         .feed--list {
-          .avatar {
-            border-radius: 50%;
-            height: 40px;
-            width: 40px;
+          li {
+            color: darken($dark-gray, 50%);
+            display: flex;
+            align-items: center;
+
+            .avatar {
+              border-radius: 50%;
+              height: 40px;
+              width: 40px;
+              margin: 5px 25px 5px 0px;
+            }
           }
         }
         h1 {
           font-size: 28px;
           font-weight: 200;
+          color: darken($dark-gray, 50%);
+          margin-top: 15px;
+          margin-bottom: 1px;
+        }
+      }
+
+      .previous {
+        height: 70vh;
+        box-shadow: inset 0px 0px 0 40px white;
+      }
+
+      .upcoming {
+        height: 20vh;
+        background: lighten($light-gray, 3%);
+      }
+
+      .shuffle {
+        height: 20vh;
+        background: lighten($light-gray, 3%);
+        padding-top: 50px;
+        .shuffle--content {
+          @include span-columns(9);
+        }
+        .shuffle--button {
+          @include span-columns(3);
+          margin-top: 20px;
+          img {
+            width: 25px;
+            height: 25px;
+            float: left;
+          }
         }
       }
     }
