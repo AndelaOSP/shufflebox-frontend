@@ -36,69 +36,6 @@
   }
 }
 
-.nav-brownbag {
-  @include outer-container(100%);
-  background: $light-gray;
-  display: flex;
-  justify-content: space-between;
-  height: 10vh;
-  align-items: flex-end;
-  border-bottom: 1px solid $light-gray;
-  box-shadow: inset 20px -5px 50px rgba(8, 8, 8, 0.1);
-  .list {
-    width: 90%;
-  }
-  ul {
-    display: flex;
-    margin-bottom: 20px;
-    margin-left: 30px;
-    li {
-      font-size: 14px;
-      padding-right: 100px;
-      padding-left: 20px;
-      font-weight: 400;
-      a {
-        color: darken($dark-gray, 50%);
-        &:hover {
-          color: $blue;
-        }
-      }
-    }
-  }
-  .image {
-    width: 10%;
-  }
-  div {
-    a {
-      margin-left: 10px;
-      font-size: 14px;
-      font-weight: 600;
-      color: darken($dark-gray, 50%);
-    }
-  }
-}
-
 .content-container {
   overflow: hidden;
-}
-
-.sidenav {
-  height: 10vh;
-  margin-left: 80px;
-  background-color: $light-blue;
-  display: flex;
-  justify-content: center;
-  align-items: flex-end;
-  nav {
-    margin-bottom: 20px;
-  }
-}
-
-.side-panel {
-  @include span-columns(4);
-  background: $light-gray;
-  height: 90vh;
-  overflow: hidden;
-  float: right;
-  border-left: 1px solid darken($light-gray, 20%);
 }

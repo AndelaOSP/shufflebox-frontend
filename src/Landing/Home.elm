@@ -42,7 +42,7 @@ introSection =
             , p [ class "sub-intro" ]
                 [ text "With our new app you will be able to automate"
                 , br [] []
-                , text "the task of selecting fellows for hangouts,"
+                , text "the task of selecting Andelans for hangouts,"
                 , br [] []
                 , text "brown bag and secret santa."
                 ]

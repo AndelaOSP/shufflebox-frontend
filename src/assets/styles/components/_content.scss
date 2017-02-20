@@ -44,6 +44,10 @@
         line-height: 12px;
         margin-top: 50px;
         width: 200px;
+
+        &:active, &:focus {
+          outline: none;
+        }
         b {
           font-size: 13px;
           font-weight: 600;
