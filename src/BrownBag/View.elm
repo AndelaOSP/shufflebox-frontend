@@ -15,7 +15,7 @@ view brownBags =
             , div [ class "brownbag--feed" ]
                 [ feed brownBags ]
             , div [ class "brownbag--side-panel" ]
-                []
+                [ undoneBrownbags brownBags ]
             ]
         ]
 
@@ -105,21 +105,19 @@ shuffleView =
         ]
 
 
-
--- TODO: Remove confusing function identifier
-
-
-presentersList : List BrownBagPresenter -> Html msg
-presentersList brownBags =
+undoneBrownbags : List BrownBagPresenter -> Html msg
+undoneBrownbags brownBags =
     brownBags
         |> List.filter (\b -> b.status == NotDone)
-        |> whosOnTheListView
+        |> undoneBrownbagsView
 
 
-whosOnTheListView : List BrownBagPresenter -> Html msg
-whosOnTheListView brownBags =
-    ul []
-        (List.map presenterRow brownBags)
+undoneBrownbagsView : List BrownBagPresenter -> Html msg
+undoneBrownbagsView brownBags =
+    div [ class "side-panel-content" ]
+        [ h1 [] [ text "Who's on the list" ]
+        , presenterList brownBags
+        ]
 
 
 presenterList : List BrownBagPresenter -> Html msg
