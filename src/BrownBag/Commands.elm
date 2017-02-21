@@ -48,7 +48,7 @@ memberDecoder =
 
 
 
-{- Convert field status to Uniion Type `BrownBagStatus` -}
+{- Convert field status to Union Type `BrownBagStatus` -}
 
 
 statusDecoder : Decode.Decoder BrownBagStatus
@@ -64,15 +64,19 @@ decodeStatus status =
 
 brownBagStatus : String -> BrownBagStatus
 brownBagStatus status =
-    case status of
-        "notDone" ->
-            NotDone
+    let
+        lowerStatus =
+            String.toLower status
+    in
+        case lowerStatus of
+            "notdone" ->
+                NotDone
 
-        "Done" ->
-            Done
+            "done" ->
+                Done
 
-        "nextInLine" ->
-            NextInLine
+            "nextinline" ->
+                NextInLine
 
-        _ ->
-            NotDone
+            _ ->
+                NotDone

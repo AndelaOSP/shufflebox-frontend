@@ -4,6 +4,7 @@ import App.Routing exposing (parseLocation)
 import App.Messages exposing (Msg(..))
 import App.Models exposing (Model)
 import BrownBag.Update exposing (..)
+import Hangouts.Update exposing (..)
 import Landing.Update exposing (update)
 
 
@@ -23,6 +24,13 @@ update msg model =
                     Landing.Update.update subMsg model
             in
                 ( state, Cmd.map LandingPageMsg cmd )
+
+        HangoutsMsg subMsg ->
+            let
+                ( updatedHangouts, cmd ) =
+                    Hangouts.Update.update subMsg model.hangouts
+            in
+                ( { model | hangouts = updatedHangouts }, Cmd.map HangoutsMsg cmd )
 
         OnLocationChange location ->
             let
