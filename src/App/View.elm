@@ -8,6 +8,7 @@ import Landing.Home
 import Landing.About
 import Landing.Faq
 import BrownBag.View
+import Hangouts.View
 
 
 view : Model -> Html Msg
@@ -30,10 +31,11 @@ page model =
 
         BrownBagsRoute ->
             Html.map BrownBagMsg (BrownBag.View.view model.brownBags)
-        
+
+        HangoutsRoute ->
+            Html.map HangoutsMsg (Hangouts.View.view)
+
         -- SecretSantaRoute ->
-
-
         NotFoundRoute ->
             notFoundView
 
