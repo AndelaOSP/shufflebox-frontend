@@ -2,8 +2,10 @@ module BrownBag.View exposing (..)
 
 import Html exposing (..)
 import Html.Attributes exposing (..)
+import Common.Utils exposing (..)
 import BrownBag.Messages exposing (Msg(..))
 import BrownBag.Models exposing (BrownBagPresenter, BrownBagStatus(..))
+import Common.Nav exposing (..)
 
 
 view : List BrownBagPresenter -> Html Msg
@@ -15,27 +17,7 @@ view brownBags =
             , div [ class "brownbag--feed" ]
                 [ feed brownBags ]
             , div [ class "brownbag--side-panel" ]
-                [ undoneBrownbags brownBags ]
-            ]
-        ]
-
-
-navBar : Html Msg
-navBar =
-    nav [ class "brownbag--nav" ]
-        [ div [ class "list" ]
-            [ ul []
-                [ li [] [ a [ href "#brownbags" ] [ text "Brown Bag" ] ]
-                , li [] [ a [ href "#secretsanta" ] [ text "Secret Santa" ] ]
-                , li [] [ a [ href "#hangouts" ] [ text "Hangouts" ] ]
-                ]
-            ]
-        , div [ class "image" ]
-            [ img
-                [ src "https://www.dropbox.com/s/okgmtdpih1xxau3/Shuffle.png?raw=1"
-                , width 50
-                ]
-                []
+                [ undone brownBags ]
             ]
         ]
 
@@ -105,15 +87,15 @@ shuffleView =
         ]
 
 
-undoneBrownbags : List BrownBagPresenter -> Html msg
-undoneBrownbags brownBags =
+undone : List BrownBagPresenter -> Html msg
+undone brownBags =
     brownBags
         |> List.filter (\b -> b.status == NotDone)
-        |> undoneBrownbagsView
+        |> viewUndone
 
 
-undoneBrownbagsView : List BrownBagPresenter -> Html msg
-undoneBrownbagsView brownBags =
+viewUndone : List BrownBagPresenter -> Html msg
+viewUndone brownBags =
     div [ class "side-panel-content" ]
         [ h1 [] [ text "Who's on the list" ]
         , presenterList brownBags
@@ -138,8 +120,3 @@ noPresenterRow : String -> Html msg
 noPresenterRow msg =
     li []
         [ text msg ]
-
-
-brandUrl : String
-brandUrl =
-    "https://www.dropbox.com/s/okgmtdpih1xxau3/Shuffle.png?raw=1"

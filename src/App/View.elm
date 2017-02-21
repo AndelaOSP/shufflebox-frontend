@@ -30,6 +30,9 @@ page model =
 
         BrownBagsRoute ->
             Html.map BrownBagMsg (BrownBag.View.view model.brownBags)
+        
+        -- SecretSantaRoute ->
+
 
         NotFoundRoute ->
             notFoundView

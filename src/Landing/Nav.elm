@@ -2,6 +2,7 @@ module Landing.Nav exposing (navBar)
 
 import Html exposing (..)
 import Html.Attributes exposing (..)
+import Common.Utils exposing (brandUrl)
 import Landing.Messages exposing (Msg(..))
 import String exposing (toLower)
 
@@ -10,7 +11,7 @@ navBar : Html Msg
 navBar =
     div [ class "nav-bar" ]
         [ img
-            [ src "https://www.dropbox.com/s/okgmtdpih1xxau3/Shuffle.png?raw=1"
+            [ src brandUrl
             , width 50
             , style [ ( "margin-left", "90px" ) ]
             ]
