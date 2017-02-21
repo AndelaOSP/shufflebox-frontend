@@ -35,7 +35,6 @@ page model =
         HangoutsRoute ->
             Html.map HangoutsMsg (Hangouts.View.view)
 
-        -- SecretSantaRoute ->
         NotFoundRoute ->
             notFoundView
 

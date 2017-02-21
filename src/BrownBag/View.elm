@@ -4,34 +4,34 @@ import Html exposing (..)
 import Html.Attributes exposing (..)
 import Common.Utils exposing (..)
 import BrownBag.Messages exposing (Msg(..))
-import BrownBag.Models exposing (BrownBagPresenter, BrownBagStatus(..))
+import BrownBag.Models exposing (Presenter, Status(..))
 import Common.Nav exposing (navBar)
 import Common.SideNav exposing (sideNav)
 
 
-view : List BrownBagPresenter -> Html Msg
+view : List Presenter -> Html Msg
 view brownBags =
-    div [ class "brownbag" ]
+    div [ class "container" ]
         [ sideNav
-        , div [ class "brownbag--content" ]
+        , div [ class "container--content" ]
             [ navBar
-            , div [ class "brownbag--feed" ]
-                [ feed brownBags ]
-            , div [ class "brownbag--side-panel" ]
-                [ undone brownBags ]
+            , feed brownBags
+            , undone brownBags
             ]
         ]
 
 
-feed : List BrownBagPresenter -> Html Msg
+feed : List Presenter -> Html Msg
 feed brownBags =
-    div []
-        [ upcoming brownBags
-        , previous brownBags
+    div [ class "brownbag--feed" ]
+        [ div []
+            [ upcoming brownBags
+            , previous brownBags
+            ]
         ]
 
 
-previous : List BrownBagPresenter -> Html msg
+previous : List Presenter -> Html msg
 previous presenters =
     let
         previousPresenters =
@@ -45,7 +45,7 @@ previous presenters =
             ]
 
 
-upcoming : List BrownBagPresenter -> Html msg
+upcoming : List Presenter -> Html msg
 upcoming presenters =
     let
         maybePresenter =
@@ -81,36 +81,32 @@ shuffleView =
         ]
 
 
-undone : List BrownBagPresenter -> Html msg
+undone : List Presenter -> Html msg
 undone brownBags =
     brownBags
         |> List.filter (\b -> b.status == NotDone)
         |> viewUndone
 
 
-viewUndone : List BrownBagPresenter -> Html msg
+viewUndone : List Presenter -> Html msg
 viewUndone brownBags =
-    div [ class "side-panel-content" ]
-        [ h1 [] [ text "Who's on the list" ]
-        , presenterList brownBags
+    div [ class "brownbag--side-panel" ]
+        [ div [ class "side-panel-content" ]
+            [ h1 [] [ text "Who's on the list" ]
+            , presenterList brownBags
+            ]
         ]
 
 
-presenterList : List BrownBagPresenter -> Html msg
+presenterList : List Presenter -> Html msg
 presenterList presenters =
     ul [ class "feed--list" ]
         (List.map presenterRow presenters)
 
 
-presenterRow : BrownBagPresenter -> Html msg
+presenterRow : Presenter -> Html msg
 presenterRow presenter =
     li []
         [ img [ class "avatar", src presenter.avatar ] []
         , text presenter.name
         ]
-
-
-noPresenterRow : String -> Html msg
-noPresenterRow msg =
-    li []
-        [ text msg ]
