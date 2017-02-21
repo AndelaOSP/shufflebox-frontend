@@ -1,4 +1,30 @@
 {
+  "hangouts": [
+    {
+    "Jan 20 2017":
+        [
+            {
+                "group_id": "123",
+                "members": [
+                    {
+                        "user_id": 12,
+                        "name": "Name here",
+                        "email": "a@example.com",
+                        "avatar": "avatarUrl.com"
+                    }
+                ],
+            },
+            {
+                "group_id": "124",
+                "members": [
+                    "Jane Kujatena",
+                    "John Sijitena"
+                ],
+            }
+        ],
+    "Feb 24 2017": []
+    }
+  ],
   "brownbags" : [
     {
       "id": 1,
