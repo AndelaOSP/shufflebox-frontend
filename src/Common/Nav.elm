@@ -3,10 +3,9 @@ module Common.Nav exposing (navBar)
 import Html exposing (..)
 import Html.Attributes exposing (..)
 import Common.Utils exposing (brandUrl)
-import BrownBag.Messages exposing (Msg(..))
 
 
-navBar : Html Msg
+navBar : Html msg
 navBar =
     nav [ class "brownbag--nav" ]
         [ div [ class "list" ]
