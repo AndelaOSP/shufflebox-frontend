@@ -5,13 +5,14 @@ import Html.Attributes exposing (..)
 import Common.Utils exposing (..)
 import BrownBag.Messages exposing (Msg(..))
 import BrownBag.Models exposing (BrownBagPresenter, BrownBagStatus(..))
-import Common.Nav exposing (..)
+import Common.Nav exposing (navBar)
+import Common.SideNav exposing (sideNav)
 
 
 view : List BrownBagPresenter -> Html Msg
 view brownBags =
     div [ class "brownbag" ]
-        [ div [ class "brownbag--sidebar" ] [ sideNav ]
+        [ sideNav
         , div [ class "brownbag--content" ]
             [ navBar
             , div [ class "brownbag--feed" ]
@@ -19,13 +20,6 @@ view brownBags =
             , div [ class "brownbag--side-panel" ]
                 [ undone brownBags ]
             ]
-        ]
-
-
-sideNav : Html msg
-sideNav =
-    div [ class "sidenav" ]
-        [ nav [] [ text "What is you next event?" ]
         ]
 
 
