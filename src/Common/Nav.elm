@@ -7,7 +7,7 @@ import Common.Utils exposing (brandUrl)
 
 navBar : Html msg
 navBar =
-    nav [ class "brownbag--nav" ]
+    nav [ class "container--nav" ]
         [ div [ class "list" ]
             [ ul []
                 [ li [] [ a [ href "#brownbags" ] [ text "Brown Bag" ] ]

@@ -4,7 +4,7 @@ import Http
 import Json.Decode as Decode exposing (field, succeed, andThen, int, string, maybe)
 import Json.Decode.Extra exposing ((|:))
 import BrownBag.Messages exposing (..)
-import BrownBag.Models exposing (BrownBagPresenter, BrownBagStatus(..))
+import BrownBag.Models exposing (Presenter, Status(..))
 
 
 baseUrl : String
@@ -27,18 +27,18 @@ getBrownBags =
 {- Delegate decoding each member of a list to `memberDecoder` -}
 
 
-collectionDecoder : Decode.Decoder (List BrownBagPresenter)
+collectionDecoder : Decode.Decoder (List Presenter)
 collectionDecoder =
     Decode.list memberDecoder
 
 
 
-{- JSON decoder that returns a `BrownBagPresenter` record -}
+{- JSON decoder that returns a `Presenter` record -}
 
 
-memberDecoder : Decode.Decoder BrownBagPresenter
+memberDecoder : Decode.Decoder Presenter
 memberDecoder =
-    succeed BrownBagPresenter
+    succeed Presenter
         |: (field "id" int)
         |: (field "name" string)
         |: (field "email" string)
@@ -48,25 +48,25 @@ memberDecoder =
 
 
 
-{- Convert field status to Union Type `BrownBagStatus` -}
+{- Convert field status to Union Type `Status` -}
 
 
-statusDecoder : Decode.Decoder BrownBagStatus
+statusDecoder : Decode.Decoder Status
 statusDecoder =
     field "status" string
         |> andThen decodeStatus
 
 
-decodeStatus : String -> Decode.Decoder BrownBagStatus
-decodeStatus status =
-    succeed (brownBagStatus status)
+decodeStatus : String -> Decode.Decoder Status
+decodeStatus s =
+    succeed (status s)
 
 
-brownBagStatus : String -> BrownBagStatus
-brownBagStatus status =
+status : String -> Status
+status s =
     let
         lowerStatus =
-            String.toLower status
+            String.toLower s
     in
         case lowerStatus of
             "notdone" ->

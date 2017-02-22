@@ -1,10 +1,10 @@
 module BrownBag.Messages exposing (..)
 
 import Http
-import BrownBag.Models exposing (BrownBagPresenter)
+import BrownBag.Models exposing (Presenter)
 
 
 type Msg
-    = OnFetchAll (Result Http.Error (List BrownBagPresenter))
+    = OnFetchAll (Result Http.Error (List Presenter))
     | ListBrownBags
     | ShuffleBrownBag

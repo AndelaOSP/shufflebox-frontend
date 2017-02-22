@@ -1,17 +1,17 @@
 module BrownBag.Models exposing (..)
 
 
-type BrownBagStatus
+type Status
     = NotDone
     | Done
     | NextInLine
 
 
-type alias BrownBagPresenter =
+type alias Presenter =
     { id : Int
     , name : String
     , email : String
     , avatar : String
     , date : Maybe String
-    , status : BrownBagStatus
+    , status : Status
     }
