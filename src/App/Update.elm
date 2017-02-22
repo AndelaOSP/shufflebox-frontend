@@ -5,6 +5,7 @@ import App.Messages exposing (Msg(..))
 import App.Models exposing (Model)
 import BrownBag.Update exposing (..)
 import Hangouts.Update exposing (..)
+import SecretSanta.Update exposing (..)
 import Landing.Update exposing (update)
 
 
@@ -31,6 +32,13 @@ update msg model =
                     Hangouts.Update.update subMsg model.hangouts
             in
                 ( { model | hangouts = updatedHangouts }, Cmd.map HangoutsMsg cmd )
+
+        SecretSantaMsg subMsg ->
+            let
+                ( updatedSecretSantas, cmd ) =
+                    SecretSanta.Update.update subMsg model.secretSantas
+            in
+                ( { model | secretSantas = updatedSecretSantas }, Cmd.map SecretSantaMsg cmd )
 
         OnLocationChange location ->
             let
