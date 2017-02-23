@@ -8,9 +8,9 @@ import Common.SideNav exposing (sideNav)
 
 view : Html msg
 view =
-    div [ class "brownbag" ]
+    div [ class "container" ]
         [ sideNav
-        , div [ class "brownbag--content" ]
+        , div [ class "container--content" ]
             [ navBar
             , text "Hangouts is awesome!!"
             ]

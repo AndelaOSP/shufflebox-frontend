@@ -13,7 +13,7 @@ type alias Group =
 
 
 type alias Member =
-    { user_id : String
+    { userId : String
     , name : String
     , email : String
     , avatar : String

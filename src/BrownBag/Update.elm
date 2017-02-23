@@ -1,11 +1,11 @@
 module BrownBag.Update exposing (..)
 
 import Navigation
-import BrownBag.Models exposing (BrownBagPresenter)
+import BrownBag.Models exposing (Presenter)
 import BrownBag.Messages exposing (Msg(..))
 
 
-update : Msg -> List BrownBagPresenter -> ( List BrownBagPresenter, Cmd Msg )
+update : Msg -> List Presenter -> ( List Presenter, Cmd Msg )
 update msg brownBags =
     case msg of
         ListBrownBags ->
