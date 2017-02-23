@@ -9,7 +9,7 @@ type Route
     | AboutRoute
     | FaqRoute
     | BrownBagsRoute
-      -- | SecretSantaRoute
+    | SecretSantaRoute
     | HangoutsRoute
     | NotFoundRoute
 
@@ -21,7 +21,7 @@ matchers =
         , map AboutRoute (s "about")
         , map FaqRoute (s "faq")
         , map BrownBagsRoute (s "brownbags")
-          -- , map SecretSantaRoute (s "secretsanta")
+        , map SecretSantaRoute (s "secretsanta")
         , map HangoutsRoute (s "hangouts")
         ]
 
