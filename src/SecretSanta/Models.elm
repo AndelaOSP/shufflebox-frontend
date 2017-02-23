@@ -15,7 +15,7 @@ type alias Pair =
 
 
 type alias Person =
-    { user_id : String
+    { userId : String
     , name : String
     , email : String
     , avatar : String
