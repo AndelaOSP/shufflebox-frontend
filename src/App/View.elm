@@ -4,9 +4,7 @@ import Html exposing (..)
 import App.Models exposing (Model)
 import App.Messages exposing (Msg(..))
 import Routing.Route exposing (Route(..))
-import Landing.Home
-import Landing.About
-import Landing.Faq
+import Landing.View as Landing
 import BrownBag.View
 import Hangouts.View
 import SecretSanta.View
@@ -22,13 +20,13 @@ page : Model -> Html Msg
 page model =
     case model.route of
         HomeRoute ->
-            Html.map LandingPageMsg (Landing.Home.view)
+            Html.map LandingPageMsg (Landing.view model)
 
         AboutRoute ->
-            Html.map LandingPageMsg (Landing.About.view)
+            Html.map LandingPageMsg (Landing.view model)
 
         FaqRoute ->
-            Html.map LandingPageMsg (Landing.Faq.view)
+            Html.map LandingPageMsg (Landing.view model)
 
         BrownBagsRoute ->
             Html.map BrownBagMsg (BrownBag.View.view model.brownBags)

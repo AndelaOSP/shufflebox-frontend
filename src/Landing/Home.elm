@@ -4,21 +4,10 @@ import Html exposing (..)
 import Html.Attributes exposing (..)
 import Html.Events exposing (onClick)
 import Landing.Messages exposing (Msg(..))
-import Landing.Nav exposing (navBar)
-import Landing.Footer exposing (pageFooter)
 
 
 view : Html Msg
 view =
-    div []
-        [ navBar
-        , page
-        , pageFooter
-        ]
-
-
-page : Html Msg
-page =
     div [ class "content" ]
         [ introSection
         , illustration
@@ -46,7 +35,7 @@ introSection =
                 , br [] []
                 , text "brown bag and secret santa."
                 ]
-            , button [ onClick GetStarted,class "btn-rounded" ]
+            , button [ onClick GetStarted, class "btn-rounded" ]
                 [ b [] [ text "GET STARTED" ] ]
             ]
         ]
