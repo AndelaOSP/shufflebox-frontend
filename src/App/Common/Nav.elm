@@ -3,7 +3,7 @@ module App.Common.Nav exposing (navBar)
 import Html exposing (..)
 import Html.Attributes exposing (..)
 import Common.Utils exposing (brandUrl)
-import Common.Util.Html exposing (link)
+import Common.Utils.Html exposing (link)
 import App.Messages exposing (Msg(..))
 import Routing.Route exposing (Route(..))
 

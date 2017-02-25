@@ -1,8 +1,8 @@
-module Common.Util.Html exposing (..)
+module Common.Utils.Html exposing (..)
 
 import Html exposing (Html, Attribute, a, text)
 import Html.Attributes exposing (class, href)
-import Common.Util.Events exposing (onClick)
+import Common.Utils.Events exposing (onClick)
 import Routing.Route exposing (Route, reverse)
 
 

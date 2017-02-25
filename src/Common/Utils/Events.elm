@@ -1,4 +1,4 @@
-module Common.Util.Events exposing (..)
+module Common.Utils.Events exposing (..)
 
 import Html exposing (Attribute)
 import Html.Events exposing (Options, onWithOptions)
