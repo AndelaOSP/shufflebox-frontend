@@ -1,8 +1,9 @@
 module Common.Util.Html exposing (..)
 
-import Html exposing (Attribute)
+import Html exposing (Html, Attribute, a, text)
 import Html.Attributes exposing (class, href)
 import Common.Util.Events exposing (onClick)
+import Routing.Route exposing (Route, reverse)
 
 
 type alias Url =
@@ -26,3 +27,12 @@ linkAttrs className message url =
     , href url
     , class className
     ]
+
+
+
+{- Small helper for constructing links without classes -}
+
+
+link : msg -> Route -> String -> Html msg
+link action route linkText =
+    a (linkAttrs "" action (reverse route)) [ text linkText ]

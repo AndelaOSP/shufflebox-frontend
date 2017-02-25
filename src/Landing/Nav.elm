@@ -3,7 +3,7 @@ module Landing.Nav exposing (navBar)
 import Html exposing (..)
 import Html.Attributes exposing (..)
 import Common.Utils exposing (brandUrl)
-import Common.Util.Html exposing (linkAttrs)
+import Common.Util.Html exposing (link)
 import Landing.Messages exposing (Msg(..))
 import Routing.Route as Routing exposing (reverse)
 
@@ -27,14 +27,9 @@ navBar =
 
 
 navLink : Html msg -> Html msg
-navLink link =
+navLink linkElement =
     li []
-        [ link ]
-
-
-link : Msg -> Routing.Route -> String -> Html Msg
-link action route linkText =
-    a (linkAttrs "" action (reverse route)) [ text linkText ]
+        [ linkElement ]
 
 
 homeLink : String -> Html Msg

@@ -5,9 +5,7 @@ import Models exposing (Model)
 import Messages exposing (Msg(..))
 import Routing.Route exposing (Route(..))
 import Landing.View as Landing
-import App.BrownBag.View as BrownBag
-import App.Hangouts.View as Hangouts
-import App.SecretSanta.View as SecretSanta
+import App.View as App
 
 
 view : Model -> Html Msg
@@ -29,13 +27,13 @@ page model =
             Html.map LandingPageMsg (Landing.view model)
 
         BrownBagsRoute ->
-            Html.map BrownBagMsg (BrownBag.view model.brownBags)
+            Html.map AppMsg (App.view model)
 
         HangoutsRoute ->
-            Html.map HangoutsMsg (Hangouts.view)
+            Html.map AppMsg (App.view model)
 
         SecretSantaRoute ->
-            Html.map SecretSantaMsg (SecretSanta.view)
+            Html.map AppMsg (App.view model)
 
         NotFoundRoute ->
             notFoundView
