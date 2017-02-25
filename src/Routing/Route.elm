@@ -1,7 +1,7 @@
-module App.Routing exposing (..)
+module Routing.Route exposing (..)
 
 import Navigation exposing (Location)
-import UrlParser exposing (..)
+import UrlParser as UrlParser exposing (Parser, parsePath, oneOf, map, top, s)
 
 
 type Route
@@ -28,9 +28,34 @@ matchers =
 
 parseLocation : Location -> Route
 parseLocation location =
-    case (parseHash matchers location) of
+    case (parsePath matchers location) of
         Just route ->
             route
 
         Nothing ->
             NotFoundRoute
+
+
+reverse : Route -> String
+reverse route =
+    case route of
+        HomeRoute ->
+            "/"
+
+        AboutRoute ->
+            "/about"
+
+        FaqRoute ->
+            "/faq"
+
+        BrownBagsRoute ->
+            "/brownbags"
+
+        SecretSantaRoute ->
+            "/secretsanta"
+
+        HangoutsRoute ->
+            "/hangouts"
+
+        _ ->
+            "/"

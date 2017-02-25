@@ -4,7 +4,7 @@ import App.Messages exposing (Msg(..))
 import App.Models exposing (Model, initialModel)
 import App.Update exposing (update)
 import App.View exposing (view)
-import App.Routing as Routing exposing (Route)
+import Routing.Route as Routing exposing (Route)
 import BrownBag.Commands exposing (getBrownBags)
 import Navigation exposing (Location)
 

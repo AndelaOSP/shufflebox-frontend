@@ -3,7 +3,7 @@ module App.Models exposing (..)
 import BrownBag.Models exposing (Presenter)
 import Hangouts.Models exposing (Hangout)
 import SecretSanta.Models exposing (SecretSanta)
-import App.Routing as Routing
+import Routing.Route as Routing
 
 
 type alias Model =

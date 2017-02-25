@@ -3,7 +3,7 @@ module App.View exposing (..)
 import Html exposing (..)
 import App.Models exposing (Model)
 import App.Messages exposing (Msg(..))
-import App.Routing exposing (Route(..))
+import Routing.Route exposing (Route(..))
 import Landing.Home
 import Landing.About
 import Landing.Faq

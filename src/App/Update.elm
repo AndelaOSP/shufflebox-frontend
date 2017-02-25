@@ -1,6 +1,6 @@
 module App.Update exposing (..)
 
-import App.Routing exposing (parseLocation)
+import Routing.Route exposing (parseLocation)
 import App.Messages exposing (Msg(..))
 import App.Models exposing (Model)
 import BrownBag.Update exposing (..)

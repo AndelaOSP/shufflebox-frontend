@@ -3,8 +3,9 @@ module Landing.Nav exposing (navBar)
 import Html exposing (..)
 import Html.Attributes exposing (..)
 import Common.Utils exposing (brandUrl)
+import Common.Util.Html exposing (linkAttrs)
 import Landing.Messages exposing (Msg(..))
-import String exposing (toLower)
+import Routing.Route as Routing exposing (reverse)
 
 
 navBar : Html Msg
@@ -17,24 +18,35 @@ navBar =
             ]
             []
         , div []
-            [ a [ href "#" ] [ text "SHUFFLEBOX" ] ]
+            [ homeLink "SHUFFLEBOX" ]
         , nav []
             [ ul []
-                (List.map navLink [ "HOME", "ABOUT", "FAQ" ])
+                (List.map navLink [ homeLink "", aboutLink, faqLink ])
             ]
         ]
 
 
-navLink : String -> Html msg
-navLink navText =
-    let
-        linkText =
-            if (toLower navText) == "home" then
-                "#"
-            else
-                "#" ++ toLower navText
-    in
-        li []
-            [ a [ href linkText ]
-                [ text navText ]
-            ]
+navLink : Html msg -> Html msg
+navLink link =
+    li []
+        [ link ]
+
+
+link : Msg -> Routing.Route -> String -> Html Msg
+link action route linkText =
+    a (linkAttrs "" action (reverse route)) [ text linkText ]
+
+
+homeLink : String -> Html Msg
+homeLink linkText =
+    link Home Routing.HomeRoute linkText
+
+
+aboutLink : Html Msg
+aboutLink =
+    link About Routing.AboutRoute "ABOUT"
+
+
+faqLink : Html Msg
+faqLink =
+    link FAQ Routing.FaqRoute "FAQ"
