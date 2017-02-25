@@ -1,10 +1,10 @@
-module BrownBag.Commands exposing (..)
+module App.BrownBag.Commands exposing (..)
 
 import Http
 import Json.Decode as Decode exposing (field, succeed, andThen, int, string, maybe)
 import Json.Decode.Extra exposing ((|:))
-import BrownBag.Messages exposing (..)
-import BrownBag.Models exposing (Presenter, Status(..))
+import App.BrownBag.Messages exposing (..)
+import App.BrownBag.Models exposing (Presenter, Status(..))
 
 
 baseUrl : String

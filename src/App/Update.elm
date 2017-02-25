@@ -1,12 +1,12 @@
-module App.Update exposing (..)
+module App.Update exposing (update)
 
-import App.Routing exposing (parseLocation)
+import Navigation
+import Models exposing (Model)
 import App.Messages exposing (Msg(..))
-import App.Models exposing (Model)
-import BrownBag.Update exposing (..)
-import Hangouts.Update exposing (..)
-import SecretSanta.Update exposing (..)
-import Landing.Update exposing (update)
+import App.BrownBag.Update as BrownBag
+import App.Hangouts.Update as Hangouts
+import App.SecretSanta.Update as SecretSanta
+import Routing.Route exposing (Route(..), reverse)
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
@@ -15,34 +15,29 @@ update msg model =
         BrownBagMsg subMsg ->
             let
                 ( updatedBrownBags, cmd ) =
-                    BrownBag.Update.update subMsg model.brownBags
+                    BrownBag.update subMsg model.brownBags
             in
                 ( { model | brownBags = updatedBrownBags }, Cmd.map BrownBagMsg cmd )
-
-        LandingPageMsg subMsg ->
-            let
-                ( state, cmd ) =
-                    Landing.Update.update subMsg model
-            in
-                ( state, Cmd.map LandingPageMsg cmd )
 
         HangoutsMsg subMsg ->
             let
                 ( updatedHangouts, cmd ) =
-                    Hangouts.Update.update subMsg model.hangouts
+                    Hangouts.update subMsg model.hangouts
             in
                 ( { model | hangouts = updatedHangouts }, Cmd.map HangoutsMsg cmd )
 
         SecretSantaMsg subMsg ->
             let
                 ( updatedSecretSantas, cmd ) =
-                    SecretSanta.Update.update subMsg model.secretSantas
+                    SecretSanta.update subMsg model.secretSantas
             in
                 ( { model | secretSantas = updatedSecretSantas }, Cmd.map SecretSantaMsg cmd )
 
-        OnLocationChange location ->
-            let
-                newRoute =
-                    parseLocation location
-            in
-                ( { model | route = newRoute }, Cmd.none )
+        ShowBrownBags ->
+            ( model, Navigation.newUrl (reverse BrownBagsRoute) )
+
+        ShowHangouts ->
+            ( model, Navigation.newUrl (reverse HangoutsRoute) )
+
+        ShowSecretSanta ->
+            ( model, Navigation.newUrl (reverse SecretSantaRoute) )

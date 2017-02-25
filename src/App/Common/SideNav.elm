@@ -1,4 +1,4 @@
-module Common.SideNav exposing (sideNav)
+module App.Common.SideNav exposing (sideNav)
 
 import Html exposing (..)
 import Html.Attributes exposing (class)

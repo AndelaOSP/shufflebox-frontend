@@ -1,4 +1,4 @@
-module Hangouts.Models exposing (..)
+module App.Hangouts.Models exposing (..)
 
 
 type alias Hangout =

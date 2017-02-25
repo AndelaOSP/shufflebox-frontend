@@ -1,49 +1,40 @@
-module App.View exposing (..)
+module App.View exposing (view)
 
-import Html exposing (..)
-import App.Models exposing (Model)
+import Html exposing (Html, div)
+import Html.Attributes exposing (class)
+import Models exposing (Model)
+import Routing.Route exposing (Route(..))
 import App.Messages exposing (Msg(..))
-import App.Routing exposing (Route(..))
-import Landing.Home
-import Landing.About
-import Landing.Faq
-import BrownBag.View
-import Hangouts.View
-import SecretSanta.View
+import App.BrownBag.View as BrownBag
+import App.SecretSanta.View as SecretSanta
+import App.Hangouts.View as Hangouts
+import App.Common.SideNav exposing (sideNav)
+import App.Common.Nav exposing (navBar)
 
 
 view : Model -> Html Msg
 view model =
-    div []
-        [ page model ]
+    div [ class "container" ]
+        [ sideNav
+        , div [ class "container--content" ]
+            [ navBar
+            , currentView model
+            ]
+        ]
 
 
-page : Model -> Html Msg
-page model =
+currentView : Model -> Html Msg
+currentView model =
     case model.route of
-        HomeRoute ->
-            Html.map LandingPageMsg (Landing.Home.view)
-
-        AboutRoute ->
-            Html.map LandingPageMsg (Landing.About.view)
-
-        FaqRoute ->
-            Html.map LandingPageMsg (Landing.Faq.view)
-
         BrownBagsRoute ->
-            Html.map BrownBagMsg (BrownBag.View.view model.brownBags)
+            Html.map BrownBagMsg (BrownBag.view model.brownBags)
 
         HangoutsRoute ->
-            Html.map HangoutsMsg (Hangouts.View.view)
+            Hangouts.view
 
         SecretSantaRoute ->
-            Html.map SecretSantaMsg (SecretSanta.View.view)
+            SecretSanta.view
 
-        NotFoundRoute ->
-            notFoundView
-
-
-notFoundView : Html msg
-notFoundView =
-    div []
-        [ text "Not Found" ]
+        _ ->
+            -- Default to showing brownBags for any other message.
+            Html.map BrownBagMsg (BrownBag.view model.brownBags)

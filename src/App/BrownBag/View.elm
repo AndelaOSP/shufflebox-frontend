@@ -1,23 +1,17 @@
-module BrownBag.View exposing (..)
+module App.BrownBag.View exposing (..)
 
 import Html exposing (..)
 import Html.Attributes exposing (..)
-import Common.Utils exposing (..)
-import BrownBag.Messages exposing (Msg(..))
-import BrownBag.Models exposing (Presenter, Status(..))
-import Common.Nav exposing (navBar)
-import Common.SideNav exposing (sideNav)
+import Common.Utils exposing (brandUrl)
+import App.BrownBag.Messages exposing (Msg(..))
+import App.BrownBag.Models exposing (Presenter, Status(..))
 
 
 view : List Presenter -> Html Msg
 view brownBags =
-    div [ class "container" ]
-        [ sideNav
-        , div [ class "container--content" ]
-            [ navBar
-            , feed brownBags
-            , undone brownBags
-            ]
+    span []
+        [ feed brownBags
+        , undone brownBags
         ]
 
 

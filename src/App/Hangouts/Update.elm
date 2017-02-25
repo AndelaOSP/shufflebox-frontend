@@ -1,7 +1,7 @@
-module Hangouts.Update exposing (..)
+module App.Hangouts.Update exposing (..)
 
-import Hangouts.Messages exposing (Msg(..))
-import Hangouts.Models exposing (..)
+import App.Hangouts.Messages exposing (Msg(..))
+import App.Hangouts.Models exposing (..)
 
 
 update : Msg -> List Hangout -> ( List Hangout, Cmd Msg )
