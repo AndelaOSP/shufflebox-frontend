@@ -1,13 +1,13 @@
-module App.View exposing (..)
+module View exposing (..)
 
 import Html exposing (..)
-import App.Models exposing (Model)
-import App.Messages exposing (Msg(..))
+import Models exposing (Model)
+import Messages exposing (Msg(..))
 import Routing.Route exposing (Route(..))
 import Landing.View as Landing
-import BrownBag.View
-import Hangouts.View
-import SecretSanta.View
+import App.BrownBag.View as BrownBag
+import App.Hangouts.View as Hangouts
+import App.SecretSanta.View as SecretSanta
 
 
 view : Model -> Html Msg
@@ -29,13 +29,13 @@ page model =
             Html.map LandingPageMsg (Landing.view model)
 
         BrownBagsRoute ->
-            Html.map BrownBagMsg (BrownBag.View.view model.brownBags)
+            Html.map BrownBagMsg (BrownBag.view model.brownBags)
 
         HangoutsRoute ->
-            Html.map HangoutsMsg (Hangouts.View.view)
+            Html.map HangoutsMsg (Hangouts.view)
 
         SecretSantaRoute ->
-            Html.map SecretSantaMsg (SecretSanta.View.view)
+            Html.map SecretSantaMsg (SecretSanta.view)
 
         NotFoundRoute ->
             notFoundView

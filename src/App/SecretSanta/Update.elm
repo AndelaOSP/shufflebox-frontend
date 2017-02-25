@@ -1,7 +1,7 @@
-module SecretSanta.Update exposing (..)
+module App.SecretSanta.Update exposing (..)
 
-import SecretSanta.Messages exposing (Msg(..))
-import SecretSanta.Models exposing (..)
+import App.SecretSanta.Messages exposing (Msg(..))
+import App.SecretSanta.Models exposing (..)
 
 
 update : Msg -> List SecretSanta -> ( List SecretSanta, Cmd Msg )

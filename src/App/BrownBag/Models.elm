@@ -1,4 +1,4 @@
-module BrownBag.Models exposing (..)
+module App.BrownBag.Models exposing (..)
 
 
 type Status

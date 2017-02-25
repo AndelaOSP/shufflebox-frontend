@@ -1,11 +1,11 @@
 module Main exposing (..)
 
-import App.Messages exposing (Msg(..))
-import App.Models exposing (Model, initialModel)
-import App.Update exposing (update)
-import App.View exposing (view)
+import Messages exposing (Msg(..))
+import Models exposing (Model, initialModel)
+import Update exposing (update)
+import View exposing (view)
 import Routing.Route as Routing exposing (Route)
-import BrownBag.Commands exposing (getBrownBags)
+import App.BrownBag.Commands exposing (getBrownBags)
 import Navigation exposing (Location)
 
 

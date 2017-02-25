@@ -2,7 +2,7 @@ module Landing.Update exposing (update)
 
 import Navigation
 import Landing.Messages exposing (Msg(..))
-import App.Models exposing (Model)
+import Models exposing (Model)
 import Routing.Route exposing (Route(..), reverse)
 
 

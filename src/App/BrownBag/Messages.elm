@@ -1,7 +1,7 @@
-module BrownBag.Messages exposing (..)
+module App.BrownBag.Messages exposing (..)
 
 import Http
-import BrownBag.Models exposing (Presenter)
+import App.BrownBag.Models exposing (Presenter)
 
 
 type Msg

@@ -1,9 +1,9 @@
-module SecretSanta.View exposing (view)
+module App.Hangouts.View exposing (view)
 
 import Html exposing (..)
 import Html.Attributes exposing (..)
-import Common.Nav exposing (navBar)
-import Common.SideNav exposing (sideNav)
+import App.Common.Nav exposing (navBar)
+import App.Common.SideNav exposing (sideNav)
 
 
 view : Html msg
@@ -12,6 +12,6 @@ view =
         [ sideNav
         , div [ class "container--content" ]
             [ navBar
-            , text "SecretSanta rocks!!"
+            , text "Hangouts is awesome!!"
             ]
         ]

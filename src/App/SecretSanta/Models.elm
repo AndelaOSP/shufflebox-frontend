@@ -1,4 +1,4 @@
-module SecretSanta.Models exposing (..)
+module App.SecretSanta.Models exposing (..)
 
 
 type alias SecretSanta =

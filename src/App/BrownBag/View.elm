@@ -1,12 +1,12 @@
-module BrownBag.View exposing (..)
+module App.BrownBag.View exposing (..)
 
 import Html exposing (..)
 import Html.Attributes exposing (..)
 import Common.Utils exposing (..)
-import BrownBag.Messages exposing (Msg(..))
-import BrownBag.Models exposing (Presenter, Status(..))
-import Common.Nav exposing (navBar)
-import Common.SideNav exposing (sideNav)
+import App.BrownBag.Messages exposing (Msg(..))
+import App.BrownBag.Models exposing (Presenter, Status(..))
+import App.Common.Nav exposing (navBar)
+import App.Common.SideNav exposing (sideNav)
 
 
 view : List Presenter -> Html Msg

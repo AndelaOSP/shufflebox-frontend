@@ -1,8 +1,8 @@
-module App.Models exposing (..)
+module Models exposing (..)
 
-import BrownBag.Models exposing (Presenter)
-import Hangouts.Models exposing (Hangout)
-import SecretSanta.Models exposing (SecretSanta)
+import App.BrownBag.Models exposing (Presenter)
+import App.Hangouts.Models exposing (Hangout)
+import App.SecretSanta.Models exposing (SecretSanta)
 import Routing.Route as Routing
 
 

@@ -1,8 +1,8 @@
-module BrownBag.Update exposing (..)
+module App.BrownBag.Update exposing (..)
 
 import Navigation
-import BrownBag.Models exposing (Presenter)
-import BrownBag.Messages exposing (Msg(..))
+import App.BrownBag.Models exposing (Presenter)
+import App.BrownBag.Messages exposing (Msg(..))
 
 
 update : Msg -> List Presenter -> ( List Presenter, Cmd Msg )

@@ -1,7 +1,7 @@
 module Landing.View exposing (view)
 
 import Html exposing (Html, div)
-import App.Models exposing (Model)
+import Models exposing (Model)
 import Routing.Route exposing (Route(..))
 import Landing.Messages exposing (Msg)
 import Landing.Nav exposing (navBar)
