@@ -4,10 +4,11 @@
   "description": "Shufflebox front-end",
   "main": "index.js",
   "scripts": {
+    "postinstall": "npm run build",
     "test": "elm-test tests/TestRunner.elm",
     "build": "NODE_ENV=production webpack -p",
     "watch": "webpack --watch",
-    "dev": "webpack-dev-server --port 3000 --hot --inline",
+    "dev": "webpack-dev-server --port 3000 --hot --history-api-fallback --inline",
     "api": "node api.js"
   },
   "repository": {
