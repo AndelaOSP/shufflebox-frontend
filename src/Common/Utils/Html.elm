@@ -14,13 +14,10 @@ type alias ClassName =
     String
 
 
-
-{- Construct a link element attributes list.
+{-| Construct a link element attributes list.
    The constructed attribute list uses a custom onClick handler that does not
    perform a page reload.
 -}
-
-
 linkAttrs : ClassName -> msg -> Url -> List (Attribute msg)
 linkAttrs className message url =
     [ onClick message
@@ -29,10 +26,15 @@ linkAttrs className message url =
     ]
 
 
-
-{- Small helper for constructing links without classes -}
-
-
+{-| Small helper for constructing links without classes
+-}
 link : msg -> Route -> String -> Html msg
 link action route linkText =
     a (linkAttrs "" action (reverse route)) [ text linkText ]
+
+
+{-| Transform link sub-message into top-level message
+-}
+transformerLink : (a -> msg) -> a -> Route -> String -> Html msg
+transformerLink transform =
+    link << transform
