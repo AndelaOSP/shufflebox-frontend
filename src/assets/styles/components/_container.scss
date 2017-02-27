@@ -3,7 +3,6 @@
   display: flex;
   height: 100vh;
   flex-direction: row;
-
   .brownbag--sidebar {
     background: $main-blue;
     width: 30%;
@@ -20,11 +19,9 @@
       }
     }
   }
-
   .container--content {
     width: 70%;
     background: lighten($light-gray, 5.5%);
-
     .container--nav {
       background: $light-gray;
       display: flex;
@@ -46,8 +43,7 @@
           padding-left: 20px;
           font-weight: 400;
           a {
-            color: darken($dark-gray, 50%);
-            &:hover {
+            color: darken($dark-gray, 50) &:hover {
               color: $blue;
             }
           }
@@ -65,16 +61,13 @@
         }
       }
     }
-
     .brownbag--feed {
       width: 70%;
       float: left;
-
       .feed--card {
         border-bottom: 1px solid $dark-gray;
         padding-left: 50px;
         padding-top: 20px;
-
         h1 {
           font-size: 28px;
           font-weight: 200;
@@ -83,17 +76,14 @@
           margin-bottom: 1px;
         }
       }
-
       .previous {
         height: 70vh;
         box-shadow: inset 0px 0px 0 40px white;
       }
-
       .upcoming {
         height: 20vh;
         background: lighten($light-gray, 3%);
       }
-
       .shuffle {
         height: 20vh;
         background: lighten($light-gray, 3%);
@@ -112,7 +102,25 @@
         }
       }
     }
-
+    .table {
+      background-color: red;
+      margin: 0 auto;
+      width: 90%;
+      height: 90%;
+      margin-top: 50px;
+      tr:first-child {
+        background: #CC0;
+        height: 50px;
+      }
+      tr:nth-child(even) {
+        background: #CCC;
+        height: 50px;
+      }
+      tr:nth-child(2n+3) {
+        background: #FFF;
+        height: 50px;
+      }
+    }
     .brownbag--side-panel {
       width: 30%;
       background: $light-gray;
@@ -120,13 +128,11 @@
       overflow: hidden;
       float: left;
       border-left: 1px solid darken($light-gray, 20%);
-
       h1 {
         text-transform: uppercase;
         font-size: 15px;
         color: darken($dark-gray, 50%);
       }
-
       .side-panel-content {
         margin-left: 30px;
         margin-top: 50px;
