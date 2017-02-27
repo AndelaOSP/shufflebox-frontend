@@ -3,8 +3,11 @@ module App.Common.Nav exposing (navBar)
 import Html exposing (..)
 import Html.Attributes exposing (..)
 import Common.Utils exposing (brandUrl)
-import Common.Utils.Html exposing (link)
+import Common.Utils.Html exposing (link, transformerLink)
 import App.Messages exposing (Msg(..))
+import App.BrownBag.Messages as Brownbag
+import App.Hangouts.Messages as Hangouts
+import App.SecretSanta.Messages as SecretSanta
 import Routing.Route exposing (Route(..))
 
 
@@ -13,9 +16,9 @@ navBar =
     nav [ class "container--nav" ]
         [ div [ class "list" ]
             [ ul []
-                [ li [] [ link ShowBrownBags BrownBagsRoute "Brown Bag" ]
-                , li [] [ link ShowSecretSanta SecretSantaRoute "Secret Santa" ]
-                , li [] [ link ShowHangouts HangoutsRoute "Hangouts" ]
+                [ li [] [ brownBagsLink ]
+                , li [] [ secretSantaLink ]
+                , li [] [ hangoutsLink ]
                 ]
             ]
         , div [ class "image" ]
@@ -26,3 +29,18 @@ navBar =
                 []
             ]
         ]
+
+
+brownBagsLink : Html Msg
+brownBagsLink =
+    transformerLink BrownBagMsg Brownbag.ListBrownBags BrownBagsRoute "Brown Bag"
+
+
+hangoutsLink : Html Msg
+hangoutsLink =
+    transformerLink HangoutsMsg Hangouts.ListHangouts HangoutsRoute "Hangouts"
+
+
+secretSantaLink : Html Msg
+secretSantaLink =
+    transformerLink SecretSantaMsg SecretSanta.ListSecretSanta SecretSantaRoute "Secret Santa"

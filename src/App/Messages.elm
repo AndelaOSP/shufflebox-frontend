@@ -9,6 +9,3 @@ type Msg
     = BrownBagMsg BrownBag.Msg
     | HangoutsMsg Hangouts.Msg
     | SecretSantaMsg SecretSanta.Msg
-    | ShowBrownBags
-    | ShowHangouts
-    | ShowSecretSanta

@@ -1,12 +1,10 @@
 module App.Update exposing (update)
 
-import Navigation
 import Models exposing (Model)
 import App.Messages exposing (Msg(..))
 import App.BrownBag.Update as BrownBag
 import App.Hangouts.Update as Hangouts
 import App.SecretSanta.Update as SecretSanta
-import Routing.Route exposing (Route(..), reverse)
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
@@ -32,12 +30,3 @@ update msg model =
                     SecretSanta.update subMsg model.secretSantas
             in
                 ( { model | secretSantas = updatedSecretSantas }, Cmd.map SecretSantaMsg cmd )
-
-        ShowBrownBags ->
-            ( model, Navigation.newUrl (reverse BrownBagsRoute) )
-
-        ShowHangouts ->
-            ( model, Navigation.newUrl (reverse HangoutsRoute) )
-
-        ShowSecretSanta ->
-            ( model, Navigation.newUrl (reverse SecretSantaRoute) )
