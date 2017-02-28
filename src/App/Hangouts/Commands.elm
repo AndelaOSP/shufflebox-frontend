@@ -1,29 +1,41 @@
 module App.Hangouts.Commands exposing (..)
 
+import Http
 import Json.Decode as Decode exposing (Decoder, succeed, string, field, int)
 import Json.Decode.Extra exposing ((|:))
-import App.Decoders.Common exposing (decodeCollection, stringDecoder)
+import App.Decoders.Common exposing (decodeCollection, stringDecoder, baseUrl)
+import App.Hangouts.Messages exposing (Msg(..))
 import App.Hangouts.Models exposing (Hangout, Group, Member)
 
+
+hangoutsUrl : String
+hangoutsUrl =
+    baseUrl ++ "/hangouts"
+
+
+getHangouts : Cmd Msg
+getHangouts =
+    Http.get hangoutsUrl (decodeCollection hangoutDecoder)
+        |> Http.send OnFetchHangouts
 
 hangoutDecoder : Decoder Hangout
 hangoutDecoder =
     succeed Hangout
-        |: (field "date" string)
+        |: (stringDecoder "date")
         |: (field "groups" (decodeCollection groupDecoder))
 
 
 groupDecoder : Decoder Group
 groupDecoder =
     succeed Group
-        |: (field "group_id" string)
+        |: (stringDecoder "group_id")
         |: (field "members" (decodeCollection memberDecoder))
 
 
 memberDecoder : Decoder Member
 memberDecoder =
     succeed Member
-        |: (field "user_id" string)
-        |: (field "name" string)
-        |: (field "email" string)
-        |: (field "avatar" string)
+        |: (stringDecoder "user_id")
+        |: (stringDecoder "name")
+        |: (stringDecoder "email")
+        |: (stringDecoder "avatar")

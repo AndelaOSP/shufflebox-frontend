@@ -12,10 +12,10 @@ update msg brownBags =
         ListBrownBags ->
             ( brownBags, Navigation.newUrl (reverse BrownBagsRoute) )
 
-        OnFetchAll (Ok newBrownBags) ->
+        OnFetchBrownBags (Ok newBrownBags) ->
             ( newBrownBags, Cmd.none )
 
-        OnFetchAll (Err _) ->
+        OnFetchBrownBags (Err _) ->
             ( brownBags, Cmd.none )
 
         _ ->
