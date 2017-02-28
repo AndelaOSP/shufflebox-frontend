@@ -1,7 +1,7 @@
 module App.SecretSanta.Commands exposing (..)
 
 import Http
-import Json.Decode exposing (Decoder, succeed, field)
+import Json.Decode exposing (Decoder, succeed)
 import Json.Decode.Extra exposing ((|:))
 import App.SecretSanta.Messages exposing (Msg(..))
 import App.Decoders.Common exposing (..)
@@ -23,7 +23,12 @@ secretSantaDecoder : Decoder SecretSanta
 secretSantaDecoder =
     succeed SecretSanta
         |: stringDecoder "date"
-        |: (field "pairs" (decodeCollection pairDecoder))
+        |: pairsDecoder "pairs"
+
+
+pairsDecoder : String -> Decoder (List Pair)
+pairsDecoder =
+    decoderFirstField (decodeCollection pairDecoder)
 
 
 pairDecoder : Decoder Pair
