@@ -106,19 +106,25 @@
       background-color: red;
       margin: 0 auto;
       width: 90%;
-      height: 90%;
+      height: 80vh;
       margin-top: 50px;
+      border-radius: 2px;
       tr:first-child {
         background: #CC0;
         height: 50px;
       }
-      tr:nth-child(even) {
+      tr:nth-child(2n+3) {
         background: #CCC;
         height: 50px;
       }
-      tr:nth-child(2n+3) {
+      tr:nth-child(even) {
         background: #FFF;
         height: 50px;
+      }
+      img {
+        border-radius: 20px;
+        width: 20px;
+        height: 10px;
       }
     }
     .brownbag--side-panel {
