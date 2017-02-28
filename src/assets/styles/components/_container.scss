@@ -103,14 +103,14 @@
       }
     }
     .table {
-      background-color: red;
+      background-color: white;
       margin: 0 auto;
       width: 90%;
       height: 80vh;
       margin-top: 50px;
       border-radius: 2px;
       tr:first-child {
-        background: #CC0;
+        background: darken($dark-gray, 20%);
         height: 50px;
       }
       tr:nth-child(2n+3) {
@@ -122,9 +122,10 @@
         height: 50px;
       }
       img {
-        border-radius: 20px;
-        width: 20px;
-        height: 10px;
+        border-radius: 30px;
+        width: 30px;
+        height: 30px;
+        margin-right: 20px;
       }
     }
     .brownbag--side-panel {
@@ -144,6 +145,15 @@
         margin-top: 50px;
       }
     }
+  }
+}
+
+.hangout--button {
+  display: flex;
+  align-items: center;
+  margin-left: 450px;
+  b {
+    color: red;
   }
 }
 
