@@ -7,6 +7,8 @@ import View exposing (view)
 import Routing.Route as Routing exposing (Route)
 import App.Messages
 import App.BrownBag.Commands exposing (getBrownBags)
+import App.Hangouts.Commands exposing (getHangouts)
+import App.SecretSanta.Commands exposing (getSecretSantas)
 import Navigation exposing (Location)
 
 
@@ -18,7 +20,11 @@ init location =
     in
         ( initialModel currentRoute
         , Cmd.map AppMsg <|
-            Cmd.map App.Messages.BrownBagMsg getBrownBags
+            Cmd.batch
+                [ (Cmd.map App.Messages.BrownBagMsg getBrownBags)
+                , (Cmd.map App.Messages.HangoutsMsg getHangouts)
+                , (Cmd.map App.Messages.SecretSantaMsg getSecretSantas)
+                ]
         )
 
 

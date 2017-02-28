@@ -11,3 +11,12 @@ update msg hangouts =
     case msg of
         ListHangouts ->
             ( hangouts, Navigation.newUrl (reverse HangoutsRoute) )
+
+        OnFetchHangouts (Ok newHangouts) ->
+            ( newHangouts, Cmd.none )
+
+        OnFetchHangouts (Err err) ->
+            let
+                _ = Debug.log "err" err
+            in
+                ( hangouts, Cmd.none )

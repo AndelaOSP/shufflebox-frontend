@@ -5,6 +5,6 @@ import App.BrownBag.Models exposing (Presenter)
 
 
 type Msg
-    = OnFetchAll (Result Http.Error (List Presenter))
+    = OnFetchBrownBags (Result Http.Error (List Presenter))
     | ListBrownBags
     | ShuffleBrownBag

@@ -2,12 +2,13 @@ module App.Hangouts.Models exposing (..)
 
 
 type alias Hangout =
-    { date : List Group
+    { date : String
+    , groups : List Group
     }
 
 
 type alias Group =
-    { id : String
+    { groupId : String
     , members : List Member
     }
 

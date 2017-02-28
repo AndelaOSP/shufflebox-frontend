@@ -3,13 +3,9 @@ module App.BrownBag.Commands exposing (..)
 import Http
 import Json.Decode as Decode exposing (field, succeed, andThen, int, string, maybe)
 import Json.Decode.Extra exposing ((|:))
-import App.BrownBag.Messages exposing (..)
+import App.BrownBag.Messages exposing (Msg(..))
 import App.BrownBag.Models exposing (Presenter, Status(..))
-
-
-baseUrl : String
-baseUrl =
-    "http://localhost:4000"
+import App.Decoders.Common exposing (decodeCollection, stringDecoder, intDecoder, baseUrl)
 
 
 brownBagsUrl : String
@@ -20,37 +16,31 @@ brownBagsUrl =
 getBrownBags : Cmd Msg
 getBrownBags =
     Http.get brownBagsUrl collectionDecoder
-        |> Http.send OnFetchAll
+        |> Http.send OnFetchBrownBags
 
 
-
-{- Delegate decoding each member of a list to `memberDecoder` -}
-
-
+{-| Delegate decoding each member of a list to `memberDecoder`
+-}
 collectionDecoder : Decode.Decoder (List Presenter)
 collectionDecoder =
     Decode.list memberDecoder
 
 
-
-{- JSON decoder that returns a `Presenter` record -}
-
-
+{-| JSON decoder that returns a `Presenter` record
+-}
 memberDecoder : Decode.Decoder Presenter
 memberDecoder =
     succeed Presenter
-        |: (field "id" int)
-        |: (field "name" string)
-        |: (field "email" string)
-        |: (field "avatar" string)
-        |: (maybe (field "date" string))
+        |: (intDecoder "id")
+        |: (stringDecoder "name")
+        |: (stringDecoder "email")
+        |: (stringDecoder "avatar")
+        |: (maybe (stringDecoder "date"))
         |: statusDecoder
 
 
-
-{- Convert field status to Union Type `Status` -}
-
-
+{-| Convert field status to Union Type `Status`
+-}
 statusDecoder : Decode.Decoder Status
 statusDecoder =
     field "status" string
