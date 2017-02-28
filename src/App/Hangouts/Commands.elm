@@ -1,9 +1,9 @@
 module App.Hangouts.Commands exposing (..)
 
 import Http
-import Json.Decode as Decode exposing (Decoder, succeed, string, field, int)
+import Json.Decode as Decode exposing (Decoder, succeed, string, int)
 import Json.Decode.Extra exposing ((|:))
-import App.Decoders.Common exposing (decodeCollection, stringDecoder, baseUrl)
+import App.Decoders.Common exposing (..)
 import App.Hangouts.Messages exposing (Msg(..))
 import App.Hangouts.Models exposing (Hangout, Group, Member)
 
@@ -18,18 +18,29 @@ getHangouts =
     Http.get hangoutsUrl (decodeCollection hangoutDecoder)
         |> Http.send OnFetchHangouts
 
+
 hangoutDecoder : Decoder Hangout
 hangoutDecoder =
     succeed Hangout
         |: (stringDecoder "date")
-        |: (field "groups" (decodeCollection groupDecoder))
+        |: (groupsDecoder "groups")
+
+
+groupsDecoder : String -> Decoder (List Group)
+groupsDecoder =
+    decoderFirstField (decodeCollection groupDecoder)
 
 
 groupDecoder : Decoder Group
 groupDecoder =
     succeed Group
         |: (stringDecoder "group_id")
-        |: (field "members" (decodeCollection memberDecoder))
+        |: (membersDecoder "members")
+
+
+membersDecoder : String -> Decoder (List Member)
+membersDecoder =
+    decoderFirstField (decodeCollection memberDecoder)
 
 
 memberDecoder : Decoder Member

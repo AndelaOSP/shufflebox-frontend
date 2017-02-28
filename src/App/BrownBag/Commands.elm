@@ -1,7 +1,7 @@
 module App.BrownBag.Commands exposing (..)
 
 import Http
-import Json.Decode as Decode exposing (field, succeed, andThen, int, string, maybe)
+import Json.Decode as Decode exposing (succeed, andThen, maybe)
 import Json.Decode.Extra exposing ((|:))
 import App.BrownBag.Messages exposing (Msg(..))
 import App.BrownBag.Models exposing (Presenter, Status(..))
@@ -15,15 +15,8 @@ brownBagsUrl =
 
 getBrownBags : Cmd Msg
 getBrownBags =
-    Http.get brownBagsUrl collectionDecoder
+    Http.get brownBagsUrl (decodeCollection memberDecoder)
         |> Http.send OnFetchBrownBags
-
-
-{-| Delegate decoding each member of a list to `memberDecoder`
--}
-collectionDecoder : Decode.Decoder (List Presenter)
-collectionDecoder =
-    Decode.list memberDecoder
 
 
 {-| JSON decoder that returns a `Presenter` record
@@ -43,7 +36,7 @@ memberDecoder =
 -}
 statusDecoder : Decode.Decoder Status
 statusDecoder =
-    field "status" string
+    stringDecoder "status"
         |> andThen decodeStatus
 
 
