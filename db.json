@@ -1,4 +1,46 @@
 {
+  "secretsantas": [
+    {
+      "date": "Jan 20 2017",
+      "pairs": [
+        {
+          "id": "123",
+          "santa": {
+            "user_id": "12",
+            "name": "Name here",
+            "email": "a@example.com",
+            "avatar": "https://api.adorable.io/avatars/285/abott@adorable.io.png"
+          },
+          "giftee": {
+            "user_id": "13",
+            "name": "Name here",
+            "email": "a@example.com",
+            "avatar": "https://api.adorable.io/avatars/285/abott@adorable.io.png"
+          }
+        }
+      ]
+    },
+    {
+      "date": "Feb 20 2017",
+      "pairs": [
+        {
+          "id": "123",
+          "santa": {
+            "user_id": "12",
+            "name": "Name here",
+            "email": "a@example.com",
+            "avatar": "https://api.adorable.io/avatars/285/abott@adorable.io.png"
+          },
+          "giftee": {
+            "user_id": "13",
+            "name": "Name here",
+            "email": "a@example.com",
+            "avatar": "https://api.adorable.io/avatars/285/abott@adorable.io.png"
+          }
+        }
+      ]
+    }
+  ],
   "hangouts": [
     {
       "date": "Jan 20 2017",

@@ -11,3 +11,13 @@ update msg secretSantas =
     case msg of
         ListSecretSanta ->
             ( secretSantas, Navigation.newUrl (reverse SecretSantaRoute) )
+
+        OnFetchSecretSantas (Ok newSecretSantas) ->
+            ( newSecretSantas, Cmd.none )
+
+        OnFetchSecretSantas (Err error) ->
+            let
+                _ =
+                    Debug.log "Error fetching secret santas" error
+            in
+                ( secretSantas, Cmd.none )
