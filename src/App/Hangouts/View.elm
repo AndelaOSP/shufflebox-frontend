@@ -9,7 +9,7 @@ view : List Hangout -> Html msg
 view hangouts =
     div [ class "table" ]
         [ table []
-            (tr [] [ th [] [ text "HANGOUTS" ] ] :: hangoutsView hangouts)
+            (tr [] [ th [ colspan 4 ] [ text "HANGOUTS" ] ] :: hangoutsView hangouts)
         , div [ class "hangout--button" ]
             [ button []
                 [ img [ src "https://www.dropbox.com/s/okgmtdpih1xxau3/Shuffle.png?raw=1" ] []
@@ -26,19 +26,18 @@ hangoutsView hangouts =
 
 hangoutView : Hangout -> List (Html msg)
 hangoutView hangout =
-    hangout.groups
-        |> List.concatMap groupView
+    List.map groupView hangout.groups
 
 
-groupView : Group -> List (Html msg)
+groupView : Group -> Html msg
 groupView group_ =
-    group_.members
-        |> List.map memberView
+    tr []
+        (List.map memberView group_.members)
 
 
 memberView : Member -> Html msg
 memberView member =
-    tr []
+    td []
         [ img
             [ src member.avatar
             , width 50
