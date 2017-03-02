@@ -30,7 +30,7 @@ currentView model =
             Html.map BrownBagMsg (BrownBag.view model.brownBags)
 
         HangoutsRoute ->
-            Hangouts.view
+            Hangouts.view model.hangouts
 
         SecretSantaRoute ->
             SecretSanta.view
