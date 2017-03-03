@@ -50,7 +50,25 @@
           "members": [
             {
               "user_id": "12",
-              "name": "Name here",
+              "name": "James Kimathi",
+              "email": "a@example.com",
+              "avatar": "https://api.adorable.io/avatars/285/abott@adorable.io.png"
+            },
+            {
+              "user_id": "13",
+              "name": "Tom Mboya",
+              "email": "a@example.com",
+              "avatar": "https://api.adorable.io/avatars/285/abott@adorable.io.png"
+            },
+            {
+              "user_id": "14",
+              "name": "Ronald Ngala",
+              "email": "a@example.com",
+              "avatar": "https://api.adorable.io/avatars/285/abott@adorable.io.png"
+            },
+            {
+              "user_id": "14",
+              "name": "James Kariuki",
               "email": "a@example.com",
               "avatar": "https://api.adorable.io/avatars/285/abott@adorable.io.png"
             }
@@ -59,6 +77,24 @@
         {
           "group_id": "124",
           "members": [
+            {
+              "user_id": "13",
+              "name": "Name here",
+              "email": "a@example.com",
+              "avatar": "https://api.adorable.io/avatars/285/abott@adorable.io.png"
+            },
+            {
+              "user_id": "13",
+              "name": "Name here",
+              "email": "a@example.com",
+              "avatar": "https://api.adorable.io/avatars/285/abott@adorable.io.png"
+            },
+            {
+              "user_id": "13",
+              "name": "Name here",
+              "email": "a@example.com",
+              "avatar": "https://api.adorable.io/avatars/285/abott@adorable.io.png"
+            },
             {
               "user_id": "13",
               "name": "Name here",
