@@ -4,6 +4,7 @@ import Navigation
 import Routing.Route exposing (Route(..), reverse)
 import App.BrownBag.Models exposing (Presenter)
 import App.BrownBag.Messages exposing (Msg(..))
+import App.BrownBag.Commands exposing (shuffleBrownBag)
 
 
 update : Msg -> List Presenter -> ( List Presenter, Cmd Msg )
@@ -18,5 +19,5 @@ update msg brownBags =
         OnFetchBrownBags (Err _) ->
             ( brownBags, Cmd.none )
 
-        _ ->
-            ( brownBags, Cmd.none )
+        ShuffleBrownBag ->
+            ( brownBags, shuffleBrownBag )

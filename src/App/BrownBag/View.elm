@@ -2,6 +2,7 @@ module App.BrownBag.View exposing (..)
 
 import Html exposing (..)
 import Html.Attributes exposing (..)
+import Html.Events exposing (onClick)
 import Common.Utils exposing (brandUrl)
 import App.BrownBag.Messages exposing (Msg(..))
 import App.BrownBag.Models exposing (Presenter, Status(..))
@@ -39,7 +40,7 @@ previous presenters =
             ]
 
 
-upcoming : List Presenter -> Html msg
+upcoming : List Presenter -> Html Msg
 upcoming presenters =
     let
         maybePresenter =
@@ -59,7 +60,7 @@ upcoming presenters =
                 shuffleView
 
 
-shuffleView : Html msg
+shuffleView : Html Msg
 shuffleView =
     div [ class "feed--card shuffle" ]
         [ div [ class "shuffle--content" ]
@@ -67,7 +68,7 @@ shuffleView =
             , p [] [ text "30 Mar" ]
             ]
         , div [ class "shuffle--button" ]
-            [ button []
+            [ button [ onClick ShuffleBrownBag ]
                 [ img [ src brandUrl ] []
                 , text "Shuffle"
                 ]

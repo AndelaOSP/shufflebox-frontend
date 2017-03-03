@@ -1,6 +1,7 @@
 module App.BrownBag.Commands exposing (..)
 
 import Http
+import Json.Encode as Encode
 import Json.Decode as Decode exposing (succeed, andThen, maybe)
 import Json.Decode.Extra exposing ((|:))
 import App.BrownBag.Messages exposing (Msg(..))
@@ -63,3 +64,15 @@ status s =
 
             _ ->
                 NotDone
+
+
+typeEncoder : Encode.Value
+typeEncoder =
+    Encode.object <|
+        [ ( "type", Encode.string "brownbag" )
+        ]
+
+
+shuffleBrownBagRequest : Http.Request Presenter
+shuffleBrownBagRequest =
+    Http.post (baseUrl ++ "/shuffle") (typeEncoder |> Http.jsonBody) memberDecoder
