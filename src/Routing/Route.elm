@@ -1,7 +1,10 @@
 module Routing.Route exposing (..)
 
 import Navigation exposing (Location)
-import UrlParser as UrlParser exposing (Parser, parsePath, oneOf, map, top, s)
+import UrlParser as UrlParser exposing (..)
+import App.Auth.Models exposing (Token)
+import Common.Utils exposing (loginAPIUrl)
+import String
 
 
 type Route
@@ -12,6 +15,8 @@ type Route
     | SecretSantaRoute
     | HangoutsRoute
     | NotFoundRoute
+    | AuthRoute Token
+    | LoginRoute Location
 
 
 matchers : Parser (Route -> a) a
@@ -23,6 +28,7 @@ matchers =
         , map BrownBagsRoute (s "brownbags")
         , map SecretSantaRoute (s "secretsanta")
         , map HangoutsRoute (s "hangouts")
+        , map AuthRoute (s "auth" <?> stringParam "token")
         ]
 
 
@@ -57,5 +63,28 @@ reverse route =
         HangoutsRoute ->
             "/hangouts"
 
+        LoginRoute location ->
+            constructLoginUrl location
+
+        AuthRoute token ->
+            case token of
+                Just t ->
+                    "/auth?token=" ++ t
+
+                Nothing ->
+                    "/auth"
+
         _ ->
             "/"
+
+
+constructLoginUrl : Location -> String
+constructLoginUrl location =
+    String.concat
+        [ loginAPIUrl
+        , "?redirect_url="
+        , location.protocol
+        , "//"
+        , location.host
+        , "/auth"
+        ]

@@ -17,26 +17,14 @@ view model =
 page : Model -> Html Msg
 page model =
     case model.route of
-        HomeRoute ->
-            Html.map LandingPageMsg (Landing.view model)
-
-        AboutRoute ->
-            Html.map LandingPageMsg (Landing.view model)
-
-        FaqRoute ->
-            Html.map LandingPageMsg (Landing.view model)
-
-        BrownBagsRoute ->
-            Html.map AppMsg (App.view model)
-
-        HangoutsRoute ->
-            Html.map AppMsg (App.view model)
-
-        SecretSantaRoute ->
-            Html.map AppMsg (App.view model)
-
         NotFoundRoute ->
             notFoundView
+
+        _ ->
+            if model.authModel.isAuthenticated then
+                Html.map AppMsg (App.view model)
+            else
+                Html.map LandingPageMsg (Landing.view model)
 
 
 notFoundView : Html msg
