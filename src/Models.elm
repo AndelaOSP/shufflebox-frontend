@@ -3,7 +3,13 @@ module Models exposing (..)
 import App.BrownBag.Models exposing (Presenter)
 import App.Hangouts.Models exposing (Hangout)
 import App.SecretSanta.Models exposing (SecretSanta)
+import App.Auth.Models
 import Routing.Route as Routing
+
+
+type alias Flags =
+    { token : App.Auth.Models.Token
+    }
 
 
 type alias Model =
@@ -11,6 +17,7 @@ type alias Model =
     , hangouts : List Hangout
     , secretSantas : List SecretSanta
     , route : Routing.Route
+    , authModel : App.Auth.Models.Model
     }
 
 
@@ -20,4 +27,5 @@ initialModel route =
     , hangouts = []
     , secretSantas = []
     , route = route
+    , authModel = App.Auth.Models.initialModel Nothing
     }

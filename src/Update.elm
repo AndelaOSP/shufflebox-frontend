@@ -1,6 +1,7 @@
-module Update exposing (..)
+module Update exposing (update)
 
-import Routing.Route exposing (parseLocation)
+import Navigation
+import Routing.Route exposing (reverse, parseLocation, Route(AuthRoute, LoginRoute))
 import Messages exposing (Msg(..))
 import Models exposing (Model)
 import App.Update
@@ -28,5 +29,18 @@ update msg model =
             let
                 newRoute =
                     parseLocation location
+
+                cmd =
+                    redirectToLogin location newRoute
             in
-                ( { model | route = newRoute }, Cmd.none )
+                ( { model | route = newRoute }, cmd )
+
+
+redirectToLogin : Navigation.Location -> Route -> Cmd Msg
+redirectToLogin location route =
+    case route of
+        AuthRoute Nothing ->
+            Navigation.load (reverse <| LoginRoute location)
+
+        _ ->
+            Cmd.none

@@ -1,10 +1,18 @@
-module App.Update exposing (update)
+module App.Update exposing (update, receiveToken)
 
-import Models exposing (Model)
+import Models exposing (Model, initialModel)
+import Routing.Route exposing (Route(HomeRoute))
 import App.Messages exposing (Msg(..))
+import App.Auth.Models exposing (Token)
+import App.Auth.Update as Auth
+import App.Auth.Messages as AuthMessage
+import App.Auth.Ports as AuthPorts
 import App.BrownBag.Update as BrownBag
+import App.BrownBag.Commands exposing (getBrownBags)
 import App.Hangouts.Update as Hangouts
+import App.Hangouts.Commands exposing (getHangouts)
 import App.SecretSanta.Update as SecretSanta
+import App.SecretSanta.Commands exposing (getSecretSantas)
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
@@ -30,3 +38,31 @@ update msg model =
                     SecretSanta.update subMsg model.secretSantas
             in
                 ( { model | secretSantas = updatedSecretSantas }, Cmd.map SecretSantaMsg cmd )
+
+        AuthMsg subMsg ->
+            let
+                ( newAuth, cmd ) =
+                    Auth.update subMsg model.authModel
+            in
+                ( { model | authModel = newAuth }, Cmd.map AuthMsg cmd )
+
+        Logout ->
+            ( initialModel HomeRoute, AuthPorts.removeToken Nothing )
+
+
+{-| Receive a token, authenticate the user and issue the necessary commands
+    to fetch app data
+-}
+receiveToken : Token -> Model -> ( Model, Cmd Msg )
+receiveToken token model =
+    let
+        ( newModel, cmd ) =
+            update (AuthMsg <| AuthMessage.ReceiveToken token) model
+    in
+        (newModel
+            ! [ (Cmd.map BrownBagMsg getBrownBags)
+              , (Cmd.map HangoutsMsg getHangouts)
+              , (Cmd.map SecretSantaMsg getSecretSantas)
+              , cmd
+              ]
+        )

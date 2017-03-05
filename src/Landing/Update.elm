@@ -10,7 +10,7 @@ update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
     case msg of
         GetStarted ->
-            ( model, Navigation.newUrl (reverse BrownBagsRoute) )
+            ( model, Navigation.newUrl (reverse <| AuthRoute Nothing) )
 
         Home ->
             ( model, Navigation.newUrl (reverse HomeRoute) )
