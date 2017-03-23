@@ -1,13 +1,15 @@
 /* import dependencies */
-@import "bourbon/bourbon";
-@import "neat/neat";
+
+@import "base/reset";
 @import "base/base";
+@import "~bulma";
 @import "components/nav";
 @import "components/content";
 @import "components/footer";
 @import "components/container";
-
-*, html, body {
+*,
+html,
+body {
   margin: 0;
   padding: 0;
 }
