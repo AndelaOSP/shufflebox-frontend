@@ -17,7 +17,7 @@ navBar =
             , style [ ( "margin-left", "90px" ) ]
             ]
             []
-        , div []
+        , div [ class "column is-half"]
             [ homeLink "SHUFFLEBOX" ]
         , nav []
             [ ul []
