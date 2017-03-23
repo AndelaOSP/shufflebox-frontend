@@ -1,6 +1,5 @@
 body {
   color: $base-font-color;
-  font-family: $base-font-family;
   font-size: $base-font-size;
   line-height: $base-line-height;
 }
@@ -11,7 +10,7 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: $heading-font-family;
+  // font-family: $heading-font-family;
   font-size: modular-scale(1);
   line-height: $heading-line-height;
   margin: 0 0 $small-spacing;
@@ -25,7 +24,6 @@ a {
   color: $action-color;
   text-decoration: none;
   transition: color $base-duration $base-timing;
-
   &:active,
   &:focus,
   &:hover {
