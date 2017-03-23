@@ -60,9 +60,9 @@ receiveToken token model =
             update (AuthMsg <| AuthMessage.ReceiveToken token) model
     in
         (newModel
-            ! [ (Cmd.map BrownBagMsg getBrownBags)
-              , (Cmd.map HangoutsMsg getHangouts)
-              , (Cmd.map SecretSantaMsg getSecretSantas)
+            ! [ (Cmd.map BrownBagMsg <| getBrownBags token)
+              , (Cmd.map HangoutsMsg <| getHangouts token)
+              , (Cmd.map SecretSantaMsg <| getSecretSantas token)
               , cmd
               ]
         )
