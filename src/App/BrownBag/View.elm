@@ -4,10 +4,10 @@ import Html exposing (..)
 import Html.Attributes exposing (..)
 import Common.Utils exposing (brandUrl)
 import App.BrownBag.Messages exposing (Msg(..))
-import App.BrownBag.Models exposing (Presenter, Status(..))
+import App.BrownBag.Models exposing (BrownBag, Status(..))
 
 
-view : List Presenter -> Html Msg
+view : List BrownBag -> Html Msg
 view brownBags =
     span []
         [ feed brownBags
@@ -15,7 +15,7 @@ view brownBags =
         ]
 
 
-feed : List Presenter -> Html Msg
+feed : List BrownBag -> Html Msg
 feed brownBags =
     div [ class "brownbag--feed" ]
         [ div []
@@ -25,34 +25,34 @@ feed brownBags =
         ]
 
 
-previous : List Presenter -> Html msg
-previous presenters =
+previous : List BrownBag -> Html msg
+previous brownbags =
     let
-        previousPresenters =
-            presenters
+        doneBrownbags =
+            brownbags
                 |> List.filter (\p -> p.status == Done)
     in
         div [ class "feed--card previous" ]
             [ h1 [] [ text "Previous Brown Bags" ]
             , p [] [ text "27 Jan - 20 Mar" ]
-            , presenterList previousPresenters
+            , brownbagsList doneBrownbags
             ]
 
 
-upcoming : List Presenter -> Html msg
-upcoming presenters =
+upcoming : List BrownBag -> Html msg
+upcoming brownbags =
     let
-        maybePresenter =
-            presenters
+        maybeUpcoming =
+            brownbags
                 |> List.filter (\p -> p.status == NextInLine)
                 |> List.head
     in
-        case maybePresenter of
-            Just presenter ->
+        case maybeUpcoming of
+            Just brownbag ->
                 div [ class "feed--card upcoming" ]
                     [ h1 [] [ text "Upcoming Brown Bag" ]
                     , p [] [ text "30 Mar" ]
-                    , presenterList [ presenter ]
+                    , brownbagsList [ brownbag ]
                     ]
 
             Nothing ->
@@ -75,32 +75,32 @@ shuffleView =
         ]
 
 
-undone : List Presenter -> Html msg
+undone : List BrownBag -> Html msg
 undone brownBags =
     brownBags
         |> List.filter (\b -> b.status == NotDone)
         |> viewUndone
 
 
-viewUndone : List Presenter -> Html msg
+viewUndone : List BrownBag -> Html msg
 viewUndone brownBags =
     div [ class "brownbag--side-panel" ]
         [ div [ class "side-panel-content" ]
             [ h1 [] [ text "Who's on the list" ]
-            , presenterList brownBags
+            , brownbagsList brownBags
             ]
         ]
 
 
-presenterList : List Presenter -> Html msg
-presenterList presenters =
+brownbagsList : List BrownBag -> Html msg
+brownbagsList brownbags =
     ul [ class "feed--list" ]
-        (List.map presenterRow presenters)
+        (List.map presenterRow brownbags)
 
 
-presenterRow : Presenter -> Html msg
-presenterRow presenter =
+presenterRow : BrownBag -> Html msg
+presenterRow { user } =
     li []
-        [ img [ class "avatar", src presenter.avatar ] []
-        , text presenter.name
+        [ img [ class "avatar", src user.profile.avatar ] []
+        , text user.username
         ]

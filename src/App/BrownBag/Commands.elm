@@ -7,8 +7,9 @@ import Json.Decode.Extra exposing ((|:))
 import Common.Utils.Http as Http
 import App.Auth.Models exposing (Token)
 import App.BrownBag.Messages exposing (Msg(..))
-import App.BrownBag.Models exposing (Presenter, Status(..))
-import App.Decoders.Common exposing (decodeCollection, stringDecoder, intDecoder, baseUrl)
+import App.BrownBag.Models exposing (BrownBag, Status(..))
+import App.Decoders.Common exposing (..)
+import App.Auth.Commands exposing (userDecoder)
 
 
 brownBagsUrl : String
@@ -23,17 +24,15 @@ getBrownBags =
         << Http.get brownBagsUrl
 
 
-{-| JSON decoder that returns a `Presenter` record
+{-| JSON decoder that returns a `BrownBag` record
 -}
-memberDecoder : Decode.Decoder Presenter
+memberDecoder : Decode.Decoder BrownBag
 memberDecoder =
-    succeed Presenter
-        |: (intDecoder "id")
-        |: (stringDecoder "name")
-        |: (stringDecoder "email")
-        |: (stringDecoder "avatar")
-        |: (maybe (stringDecoder "date"))
+    succeed BrownBag
+        |: intDecoder "id"
+        |: stringDecoder "date"
         |: statusDecoder
+        |: decoderFirstField userDecoder "user"
 
 
 {-| Convert field status to Union Type `Status`
@@ -56,13 +55,13 @@ status s =
             String.toLower s
     in
         case lowerStatus of
-            "notdone" ->
+            "not_done" ->
                 NotDone
 
             "done" ->
                 Done
 
-            "nextinline" ->
+            "next_in_line" ->
                 NextInLine
 
             _ ->

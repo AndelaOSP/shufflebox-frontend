@@ -7,6 +7,21 @@ type alias Token =
     Maybe String
 
 
+type alias Profile =
+    { avatar : String
+    , birthDate : Maybe String
+    , bio : String
+    }
+
+
+type alias User =
+    { id : Int
+    , username : String
+    , email : String
+    , profile : Profile
+    }
+
+
 type alias Model =
     { token : Token
     , isAuthenticated : Bool

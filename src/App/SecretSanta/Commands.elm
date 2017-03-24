@@ -7,8 +7,10 @@ import Json.Decode.Extra exposing ((|:))
 import Common.Utils.Http as Http
 import App.SecretSanta.Messages exposing (Msg(..))
 import App.Decoders.Common exposing (..)
-import App.SecretSanta.Models exposing (SecretSanta, Pair, Person)
-import App.Auth.Models exposing (Token)
+import App.SecretSanta.Models exposing (SecretSanta)
+import App.Auth.Models exposing (Token, User)
+import App.Auth.Commands exposing (userDecoder)
+import App.Decoders.Common exposing (decoderFirstField)
 
 
 secretSantaUrl : String
@@ -26,32 +28,7 @@ getSecretSantas =
 secretSantaDecoder : Decoder SecretSanta
 secretSantaDecoder =
     succeed SecretSanta
+        |: intDecoder "id"
         |: stringDecoder "date"
-        |: pairsDecoder "pairs"
-
-
-pairsDecoder : String -> Decoder (List Pair)
-pairsDecoder =
-    decoderFirstField (decodeCollection pairDecoder)
-
-
-pairDecoder : Decoder Pair
-pairDecoder =
-    succeed Pair
-        |: stringDecoder "id"
-        |: personDecoder "santa"
-        |: personDecoder "giftee"
-
-
-personDecoder : String -> Decoder Person
-personDecoder =
-    decoderFirstField decodePerson
-
-
-decodePerson : Decoder Person
-decodePerson =
-    succeed Person
-        |: stringDecoder "user_id"
-        |: stringDecoder "name"
-        |: stringDecoder "email"
-        |: stringDecoder "avatar"
+        |: decoderFirstField userDecoder "santa"
+        |: decoderFirstField userDecoder "giftee"

@@ -7,8 +7,9 @@ import Json.Decode.Extra exposing ((|:))
 import Common.Utils.Http as Http
 import App.Decoders.Common exposing (..)
 import App.Hangouts.Messages exposing (Msg(..))
-import App.Hangouts.Models exposing (Hangout, Group, Member)
-import App.Auth.Models exposing (Token)
+import App.Hangouts.Models exposing (Hangout, Group)
+import App.Auth.Models exposing (Token, User)
+import App.Auth.Commands exposing (userDecoder)
 
 
 hangoutsUrl : String
@@ -26,8 +27,9 @@ getHangouts =
 hangoutDecoder : Decoder Hangout
 hangoutDecoder =
     succeed Hangout
-        |: (stringDecoder "date")
-        |: (groupsDecoder "groups")
+        |: intDecoder "id"
+        |: stringDecoder "date"
+        |: groupsDecoder "groups"
 
 
 groupsDecoder : String -> Decoder (List Group)
@@ -38,19 +40,10 @@ groupsDecoder =
 groupDecoder : Decoder Group
 groupDecoder =
     succeed Group
-        |: (stringDecoder "group_id")
-        |: (membersDecoder "members")
+        |: intDecoder "id"
+        |: membersDecoder "members"
 
 
-membersDecoder : String -> Decoder (List Member)
+membersDecoder : String -> Decoder (List User)
 membersDecoder =
-    decoderFirstField (decodeCollection memberDecoder)
-
-
-memberDecoder : Decoder Member
-memberDecoder =
-    succeed Member
-        |: (stringDecoder "user_id")
-        |: (stringDecoder "name")
-        |: (stringDecoder "email")
-        |: (stringDecoder "avatar")
+    decoderFirstField (decodeCollection userDecoder)
