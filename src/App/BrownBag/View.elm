@@ -4,10 +4,10 @@ import Html exposing (..)
 import Html.Attributes exposing (..)
 import Common.Utils exposing (brandUrl)
 import App.BrownBag.Messages exposing (Msg(..))
-import App.BrownBag.Models exposing (Presenter, Status(..))
+import App.BrownBag.Models exposing (BrownBag, Status(..))
 
 
-view : List Presenter -> Html Msg
+view : List BrownBag -> Html Msg
 view brownBags =
     span []
         [ feed brownBags
@@ -15,7 +15,7 @@ view brownBags =
         ]
 
 
-feed : List Presenter -> Html Msg
+feed : List BrownBag -> Html Msg
 feed brownBags =
     div [ class "brownbag--feed" ]
         [ div []
@@ -25,7 +25,7 @@ feed brownBags =
         ]
 
 
-previous : List Presenter -> Html msg
+previous : List BrownBag -> Html msg
 previous presenters =
     let
         previousPresenters =
@@ -39,7 +39,7 @@ previous presenters =
             ]
 
 
-upcoming : List Presenter -> Html msg
+upcoming : List BrownBag -> Html msg
 upcoming presenters =
     let
         maybePresenter =
@@ -75,14 +75,14 @@ shuffleView =
         ]
 
 
-undone : List Presenter -> Html msg
+undone : List BrownBag -> Html msg
 undone brownBags =
     brownBags
         |> List.filter (\b -> b.status == NotDone)
         |> viewUndone
 
 
-viewUndone : List Presenter -> Html msg
+viewUndone : List BrownBag -> Html msg
 viewUndone brownBags =
     div [ class "brownbag--side-panel" ]
         [ div [ class "side-panel-content" ]
@@ -92,15 +92,15 @@ viewUndone brownBags =
         ]
 
 
-presenterList : List Presenter -> Html msg
+presenterList : List BrownBag -> Html msg
 presenterList presenters =
     ul [ class "feed--list" ]
         (List.map presenterRow presenters)
 
 
-presenterRow : Presenter -> Html msg
-presenterRow presenter =
+presenterRow : BrownBag -> Html msg
+presenterRow { user } =
     li []
-        [ img [ class "avatar", src presenter.avatar ] []
-        , text presenter.name
+        [ img [ class "avatar", src user.profile.avatar ] []
+        , text user.username
         ]

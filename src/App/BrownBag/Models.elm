@@ -1,5 +1,7 @@
 module App.BrownBag.Models exposing (..)
 
+import App.Auth.Models exposing (User)
+
 
 type Status
     = NotDone
@@ -7,11 +9,9 @@ type Status
     | NextInLine
 
 
-type alias Presenter =
+type alias BrownBag =
     { id : Int
-    , name : String
-    , email : String
-    , avatar : String
-    , date : Maybe String
+    , date : String
     , status : Status
+    , user : User
     }

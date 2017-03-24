@@ -2,7 +2,8 @@ module App.Hangouts.View exposing (view)
 
 import Html exposing (..)
 import Html.Attributes exposing (..)
-import App.Hangouts.Models exposing (Hangout, Group, Member)
+import App.Hangouts.Models exposing (Hangout, Group)
+import App.Auth.Models exposing (User)
 
 
 view : List Hangout -> Html msg
@@ -35,13 +36,13 @@ groupView group_ =
         (List.map memberView group_.members)
 
 
-memberView : Member -> Html msg
+memberView : User -> Html msg
 memberView member =
     td []
         [ img
-            [ src member.avatar
+            [ src member.profile.avatar
             , width 50
             ]
             []
-        , text member.name
+        , text member.username
         ]
