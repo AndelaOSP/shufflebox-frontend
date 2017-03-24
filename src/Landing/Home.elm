@@ -42,13 +42,13 @@ introSection =
 
 illustration : Html msg
 illustration =
-    div [ class "illustration column is-two-thirds is-paddingless" ]
-        [ div 
-            [ class "image is-4by3"]
-            [ img
-                [ src "https://www.dropbox.com/s/l6wx0xixdfeilso/final.png?raw=1"
-                --, width 600
-                ]
-                []
+    div [ class "illustration column is-two-thirds is-paddingless" ]   
+        [ img
+            [ src "https://www.dropbox.com/s/l6wx0xixdfeilso/final.png?raw=1"
+            , class "image is-16*9"
             ]
+            []
         ]
+        
+      
+    
