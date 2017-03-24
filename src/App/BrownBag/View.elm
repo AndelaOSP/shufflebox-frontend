@@ -26,33 +26,33 @@ feed brownBags =
 
 
 previous : List BrownBag -> Html msg
-previous presenters =
+previous brownbags =
     let
-        previousPresenters =
-            presenters
+        doneBrownbags =
+            brownbags
                 |> List.filter (\p -> p.status == Done)
     in
         div [ class "feed--card previous" ]
             [ h1 [] [ text "Previous Brown Bags" ]
             , p [] [ text "27 Jan - 20 Mar" ]
-            , presenterList previousPresenters
+            , brownbagsList doneBrownbags
             ]
 
 
 upcoming : List BrownBag -> Html msg
-upcoming presenters =
+upcoming brownbags =
     let
-        maybePresenter =
-            presenters
+        maybeUpcoming =
+            brownbags
                 |> List.filter (\p -> p.status == NextInLine)
                 |> List.head
     in
-        case maybePresenter of
-            Just presenter ->
+        case maybeUpcoming of
+            Just brownbag ->
                 div [ class "feed--card upcoming" ]
                     [ h1 [] [ text "Upcoming Brown Bag" ]
                     , p [] [ text "30 Mar" ]
-                    , presenterList [ presenter ]
+                    , brownbagsList [ brownbag ]
                     ]
 
             Nothing ->
@@ -87,15 +87,15 @@ viewUndone brownBags =
     div [ class "brownbag--side-panel" ]
         [ div [ class "side-panel-content" ]
             [ h1 [] [ text "Who's on the list" ]
-            , presenterList brownBags
+            , brownbagsList brownBags
             ]
         ]
 
 
-presenterList : List BrownBag -> Html msg
-presenterList presenters =
+brownbagsList : List BrownBag -> Html msg
+brownbagsList brownbags =
     ul [ class "feed--list" ]
-        (List.map presenterRow presenters)
+        (List.map presenterRow brownbags)
 
 
 presenterRow : BrownBag -> Html msg
