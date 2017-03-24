@@ -25,4 +25,4 @@ intDecoder =
 
 baseUrl : String
 baseUrl =
-    "http://localhost:4000"
+    "http://localhost:8000/api"

@@ -1,8 +1,11 @@
 module App.BrownBag.Commands exposing (..)
 
-import Http
+import Http as H
+import HttpBuilder exposing (withExpect)
 import Json.Decode as Decode exposing (succeed, andThen, maybe)
 import Json.Decode.Extra exposing ((|:))
+import Common.Utils.Http as Http
+import App.Auth.Models exposing (Token)
 import App.BrownBag.Messages exposing (Msg(..))
 import App.BrownBag.Models exposing (Presenter, Status(..))
 import App.Decoders.Common exposing (decodeCollection, stringDecoder, intDecoder, baseUrl)
@@ -10,13 +13,14 @@ import App.Decoders.Common exposing (decodeCollection, stringDecoder, intDecoder
 
 brownBagsUrl : String
 brownBagsUrl =
-    baseUrl ++ "/brownbags"
+    baseUrl ++ "/brownbags/"
 
 
-getBrownBags : Cmd Msg
+getBrownBags : Token -> Cmd Msg
 getBrownBags =
-    Http.get brownBagsUrl (decodeCollection memberDecoder)
-        |> Http.send OnFetchBrownBags
+    HttpBuilder.send OnFetchBrownBags
+        << withExpect (H.expectJson <| decodeCollection memberDecoder)
+        << Http.get brownBagsUrl
 
 
 {-| JSON decoder that returns a `Presenter` record

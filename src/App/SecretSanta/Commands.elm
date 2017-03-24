@@ -1,22 +1,26 @@
 module App.SecretSanta.Commands exposing (..)
 
-import Http
+import Http as H
+import HttpBuilder exposing (withExpect)
 import Json.Decode exposing (Decoder, succeed)
 import Json.Decode.Extra exposing ((|:))
+import Common.Utils.Http as Http
 import App.SecretSanta.Messages exposing (Msg(..))
 import App.Decoders.Common exposing (..)
 import App.SecretSanta.Models exposing (SecretSanta, Pair, Person)
+import App.Auth.Models exposing (Token)
 
 
 secretSantaUrl : String
 secretSantaUrl =
-    baseUrl ++ "/secretsantas"
+    baseUrl ++ "/santas/"
 
 
-getSecretSantas : Cmd Msg
+getSecretSantas : Token -> Cmd Msg
 getSecretSantas =
-    Http.get secretSantaUrl (decodeCollection secretSantaDecoder)
-        |> Http.send OnFetchSecretSantas
+    HttpBuilder.send OnFetchSecretSantas
+        << withExpect (H.expectJson <| decodeCollection secretSantaDecoder)
+        << Http.get secretSantaUrl
 
 
 secretSantaDecoder : Decoder SecretSanta
