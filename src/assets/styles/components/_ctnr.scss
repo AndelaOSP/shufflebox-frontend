@@ -1,4 +1,4 @@
-.container {
+.ctnr {
   display: flex;
   height: 100vh;
   flex-direction: row;
@@ -87,9 +87,6 @@
         height: 20vh;
         background: lighten($light-gray, 3%);
         padding-top: 50px;
-        .shuffle--content {
-          // @include span-columns(9);
-        }
         .shuffle--button {
           // @include span-columns(3);
           margin-top: 20px;
