@@ -12,7 +12,7 @@ html {
 
 body,
 html {
-  height: 100%;
+  height: 100vh;
   width: 100%;
 
   #main {
@@ -63,9 +63,14 @@ html {
 
             .current-view {
               .brownbag {
+                margin-top: 0;
+
                 .brownbag--feed {
+                  padding-top: 0;
                   padding-right: 0;
-                  height: inherit;
+                  height: 90vh;
+                  min-height: 90vh;
+                  border-right: 1px solid $dark-gray;
 
                   .feed--card {
                     border-bottom: 1px solid $dark-gray;
@@ -84,9 +89,12 @@ html {
 
                   .previous {
                     box-shadow: inset 0 0 0 40px white;
+                    height: 65vh;
+                    overflow: scroll;
                   }
 
                   .upcoming {
+                    height: 25vh;
                     background: lighten($light-gray, 3%);
                   }
 
@@ -98,6 +106,11 @@ html {
                       margin-top: 20px;
                     }
                   }
+                }
+
+                .sidepanel {
+                  max-height: 85vh;
+                  overflow: scroll;
                 }
               }
             }
@@ -119,5 +132,11 @@ html {
       width: 40px;
       margin: 5px 25px 5px 0px;
     }
+  }
+}
+
+@media (min-width: 320px) and (max-width: 768px) {
+  nav {
+    height: 20% !important;
   }
 }

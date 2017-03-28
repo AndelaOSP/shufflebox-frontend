@@ -9,7 +9,7 @@ import App.BrownBag.Models exposing (BrownBag, Status(..))
 
 view : List BrownBag -> Html Msg
 view brownBags =
-    div [ class "columns brownbag is-paddingless" ]
+    div [ class "columns brownbag" ]
         [ feed brownBags
         , undone brownBags
         ]
@@ -84,7 +84,7 @@ undone brownBags =
 viewUndone : List BrownBag -> Html msg
 viewUndone brownBags =
     div [ class "column is-one-third" ]
-        [ div [ class "side-panel-content" ]
+        [ div [ class "sidepanel" ]
             [ h1 [ class "title is-4" ] [ text "Who's on the list" ]
             , brownbagsList brownBags
             ]
