@@ -13,21 +13,15 @@ import Routing.Route exposing (Route(..))
 
 navBar : Html Msg
 navBar =
-    nav [ class "container--nav" ]
-        [ div [ class "list" ]
-            [ ul []
-                [ li [] [ brownBagsLink ]
-                , li [] [ secretSantaLink ]
-                , li [] [ hangoutsLink ]
-                ]
-            ]
-        , div [ class "image" ]
-            [ img
-                [ src brandUrl
-                , width 50
-                ]
-                []
-            ]
+    nav [ class "level is-mobile is-marginless" ]
+        (List.map levelItem [ brownBagsLink, secretSantaLink, hangoutsLink ])
+
+
+levelItem : Html Msg -> Html Msg
+levelItem navLink =
+    div [ class "level-item has-text-centered" ]
+        [ p [ class "title is-5" ]
+            [ navLink ]
         ]
 
 
