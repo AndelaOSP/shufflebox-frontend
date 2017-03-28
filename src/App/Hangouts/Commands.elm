@@ -1,7 +1,7 @@
 module App.Hangouts.Commands exposing (..)
 
 import Http as H
-import HttpBuilder exposing (withExpect)
+import HttpBuilder exposing (withExpect, withHeader, withJsonBody, send)
 import Json.Decode as Decode exposing (Decoder, succeed, string, int)
 import Json.Decode.Extra exposing ((|:))
 import Common.Utils.Http as Http
@@ -10,6 +10,7 @@ import App.Hangouts.Messages exposing (Msg(..))
 import App.Hangouts.Models exposing (Hangout, Group)
 import App.Auth.Models exposing (Token, User)
 import App.Auth.Commands exposing (userDecoder)
+import App.Encoders.Common exposing (hangoutsPayload)
 
 
 hangoutsUrl : String
@@ -22,6 +23,14 @@ getHangouts =
     HttpBuilder.send OnFetchHangouts
         << withExpect (H.expectJson <| decodeCollection hangoutDecoder)
         << Http.get hangoutsUrl
+
+
+shuffleHangouts : Token -> Cmd Msg
+shuffleHangouts token =
+    Http.post hangoutsUrl token
+        |> withJsonBody hangoutsPayload
+        |> withExpect (H.expectJson <| decodeCollection hangoutDecoder)
+        |> HttpBuilder.send OnFetchHangouts
 
 
 hangoutDecoder : Decoder Hangout

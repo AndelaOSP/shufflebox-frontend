@@ -2,20 +2,21 @@ module App.Hangouts.View exposing (view)
 
 import Html exposing (..)
 import Html.Attributes exposing (..)
+import Html.Events exposing (onClick)
 import App.Hangouts.Models exposing (Hangout, Group)
+import App.Hangouts.Messages exposing (Msg(..))
 import App.Auth.Models exposing (User)
+-- import Common.Utils exposing (brandUrl)
 
 
-view : List Hangout -> Html msg
+view : List Hangout -> Html Msg
 view hangouts =
-    div [ class "table" ]
-        [ table []
+    div []
+        [ table [ class "table is-bordered is-striped" ]
             (tr [] [ th [ colspan 4 ] [ text "HANGOUTS" ] ] :: hangoutsView hangouts)
         , div [ class "hangout--button" ]
-            [ button []
-                [ img [ src "https://www.dropbox.com/s/okgmtdpih1xxau3/Shuffle.png?raw=1" ] []
-                , b [] [ text "SHUFFLE" ]
-                ]
+            [ button [ onClick ShuffleHangouts, class "button is-primary is-outlined" ]
+                [ text "SHUFFLE" ]
             ]
         ]
 

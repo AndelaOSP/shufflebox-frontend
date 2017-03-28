@@ -6,4 +6,5 @@ import App.Hangouts.Models exposing (Hangout)
 
 type Msg
     = ListHangouts
+    | ShuffleHangouts
     | OnFetchHangouts (Result Http.Error (List Hangout))
