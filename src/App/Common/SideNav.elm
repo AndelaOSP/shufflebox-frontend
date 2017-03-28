@@ -8,8 +8,8 @@ sideNav : Html msg
 sideNav =
     div [ class "column is-one-third sidenav is-hidden-mobile" ]
         [ div [ class "columns header" ]
-            [ div [ class "column is-one-third user-avatar" ] []
-            , nav [ class "column is-two-thirds" ]
+            [ div [ class "column is-2" ] []
+            , nav [ class "column is-10" ]
                 [ text "What is your next event?" ]
             ]
         ]

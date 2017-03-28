@@ -13,21 +13,27 @@ import Routing.Route exposing (Route(..))
 
 navBar : Html Msg
 navBar =
-    nav [ class "level is-mobile is-marginless" ]
-        (List.map levelItem [ brownBagsLink, secretSantaLink, hangoutsLink ])
-
-
-levelItem : Html Msg -> Html Msg
-levelItem navLink =
-    div [ class "level-item has-text-centered" ]
-        [ p [ class "title is-5" ]
-            [ navLink ]
+    nav [ class "container--nav" ]
+        [ div [ class "list columns is-two-thirds" ]
+            [ ul []
+                [ li [] [ brownBagsLink ]
+                , li [] [ secretSantaLink ]
+                , li [] [ hangoutsLink ]
+                ]
+            ]
+          -- , div [ class "image" ]
+          --     [ img
+          --         [ src brandUrl
+          --         , width 50
+          --         ]
+          --         []
+          --     ]
         ]
 
 
 brownBagsLink : Html Msg
 brownBagsLink =
-    transformerLink BrownBagMsg Brownbag.ListBrownBags BrownBagsRoute "Brown Bag"
+    transformerLink BrownBagMsg Brownbag.ListBrownBags BrownBagsRoute "Brownbag"
 
 
 hangoutsLink : Html Msg
@@ -37,4 +43,4 @@ hangoutsLink =
 
 secretSantaLink : Html Msg
 secretSantaLink =
-    transformerLink SecretSantaMsg SecretSanta.ListSecretSanta SecretSantaRoute "Secret Santa"
+    transformerLink SecretSantaMsg SecretSanta.ListSecretSanta SecretSantaRoute "SecretSanta"

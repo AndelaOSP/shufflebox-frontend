@@ -45,18 +45,43 @@ html {
 
           .content {
             height: inherit;
-
-            nav {
+            .container--nav {
               background: $light-gray;
+              height: 10vh;
+              display: flex;
+              justify-content: space-between;
+              align-items: flex-end;
               border-bottom: 1px solid $light-gray;
               box-shadow: inset 20px -5px 50px rgba(8, 8, 8, 0.1);
-              height: $nav-height;
-
-              a {
-                color: darken($dark-gray, 50);
-
-                &:hover {
-                  color: $blue;
+              .list {
+                width: 90%;
+              }
+              ul {
+                display: flex;
+                margin-bottom: 20px;
+                margin-left: 30px;
+                li {
+                  font-size: 14px;
+                  padding-right: 100px;
+                  padding-left: 20px;
+                  font-weight: 400;
+                  list-style: none;
+                  a {
+                    color: darken($dark-gray, 50) &:hover {
+                      color: $blue;
+                    }
+                  }
+                }
+              }
+              .image {
+                width: 10%;
+              }
+              div {
+                a {
+                  margin-left: 10px;
+                  font-size: 14px;
+                  font-weight: 600;
+                  color: darken($dark-gray, 50%);
                 }
               }
             }
@@ -68,8 +93,7 @@ html {
                 .brownbag--feed {
                   padding-top: 0;
                   padding-right: 0;
-                  height: 90vh;
-                  min-height: 90vh;
+                  padding-bottom: 0;
                   border-right: 1px solid $dark-gray;
 
                   .feed--card {
@@ -89,12 +113,13 @@ html {
 
                   .previous {
                     box-shadow: inset 0 0 0 40px white;
-                    height: 65vh;
-                    overflow: scroll;
+
+                    .previous-list {
+                      overflow: scroll;
+                    }
                   }
 
                   .upcoming {
-                    height: 25vh;
                     background: lighten($light-gray, 3%);
                   }
 
@@ -109,8 +134,8 @@ html {
                 }
 
                 .sidepanel {
-                  max-height: 85vh;
-                  overflow: scroll;
+                  padding-left: 10%;
+                  padding-top: 8%;
                 }
               }
             }
@@ -136,7 +161,48 @@ html {
 }
 
 @media (min-width: 320px) and (max-width: 768px) {
-  nav {
-    height: 20% !important;
+  .upcoming {
+    height: 35vh;
+  }
+
+  .previous {
+    max-height: 90vh;
+
+    .previous-list {
+      max-height: 45vh;
+    }
+  }
+
+  .sidepanel {
+    overflow: hidden;
+
+    .sidepanel-list {
+      max-height: 80vh;
+      overflow: scroll;
+    }
+  }
+}
+
+@media (min-width: 769px) {
+  .upcoming {
+    height: 25vh;
+  }
+
+  .previous {
+    height: 65vh;
+    overflow: hidden;
+
+    .previous-list {
+      max-height: 50vh;
+    }
+  }
+
+  .sidepanel {
+    overflow: hidden;
+
+    .sidepanel-list {
+      max-height: 75vh;
+      overflow: scroll;
+    }
   }
 }

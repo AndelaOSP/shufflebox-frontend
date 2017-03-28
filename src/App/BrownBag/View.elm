@@ -33,7 +33,7 @@ previous brownbags =
         div [ class "feed--card previous" ]
             [ h1 [] [ text "Previous Brown Bags" ]
             , p [] [ text "27 Jan - 20 Mar" ]
-            , brownbagsList doneBrownbags
+            , div [ class "previous-list" ] [ brownbagsList doneBrownbags ]
             ]
 
 
@@ -85,8 +85,8 @@ viewUndone : List BrownBag -> Html msg
 viewUndone brownBags =
     div [ class "column is-one-third" ]
         [ div [ class "sidepanel" ]
-            [ h1 [ class "title is-4" ] [ text "Who's on the list" ]
-            , brownbagsList brownBags
+            [ h1 [ class "title is-4 heading" ] [ text "Who's on the list" ]
+            , div [ class "sidepanel-list" ] [ brownbagsList brownBags ]
             ]
         ]
 
