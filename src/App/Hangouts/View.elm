@@ -6,7 +6,6 @@ import Html.Events exposing (onClick)
 import App.Hangouts.Models exposing (Hangout, Group)
 import App.Hangouts.Messages exposing (Msg(..))
 import App.Auth.Models exposing (User)
--- import Common.Utils exposing (brandUrl)
 
 
 view : List Hangout -> Html Msg

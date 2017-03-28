@@ -9,6 +9,7 @@ import App.Auth.Models exposing (Token)
 import App.BrownBag.Messages exposing (Msg(..))
 import App.BrownBag.Models exposing (BrownBag, Status(..))
 import App.Decoders.Common exposing (..)
+import Common.Utils exposing (baseUrl)
 import App.Auth.Commands exposing (userDecoder)
 
 
