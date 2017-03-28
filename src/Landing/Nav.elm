@@ -13,11 +13,11 @@ navBar =
     div [ class "nav-bar" ]
         [ img
             [ src brandUrl
-            , width 50
+            , class "image is-48x48"
             , style [ ( "margin-left", "90px" ) ]
             ]
             []
-        , div []
+        , div [ class "column is-half"]
             [ homeLink "SHUFFLEBOX" ]
         , nav []
             [ ul []

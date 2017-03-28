@@ -14,11 +14,15 @@ import App.Common.Nav exposing (navBar)
 
 view : Model -> Html Msg
 view model =
-    div [ class "container" ]
-        [ sideNav
-        , div [ class "container--content" ]
-            [ navBar
-            , currentView model
+    div [ class "section is-paddingless" ]
+        [ div [ class "container" ]
+            [ div [ class "columns app-content" ]
+                [ sideNav
+                , div [ class "content column is-two-thirds is-paddingless" ]
+                    [ navBar
+                    , div [ class "current-view" ] [ currentView model ]
+                    ]
+                ]
             ]
         ]
 

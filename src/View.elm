@@ -10,8 +10,7 @@ import App.View as App
 
 view : Model -> Html Msg
 view model =
-    div []
-        [ page model ]
+    page model
 
 
 page : Model -> Html Msg

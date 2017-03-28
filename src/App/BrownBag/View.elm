@@ -9,7 +9,7 @@ import App.BrownBag.Models exposing (BrownBag, Status(..))
 
 view : List BrownBag -> Html Msg
 view brownBags =
-    span []
+    div [ class "columns brownbag" ]
         [ feed brownBags
         , undone brownBags
         ]
@@ -17,11 +17,9 @@ view brownBags =
 
 feed : List BrownBag -> Html Msg
 feed brownBags =
-    div [ class "brownbag--feed" ]
-        [ div []
-            [ upcoming brownBags
-            , previous brownBags
-            ]
+    div [ class "column is-two-thirds brownbag--feed" ]
+        [ upcoming brownBags
+        , previous brownBags
         ]
 
 
@@ -35,7 +33,7 @@ previous brownbags =
         div [ class "feed--card previous" ]
             [ h1 [] [ text "Previous Brown Bags" ]
             , p [] [ text "27 Jan - 20 Mar" ]
-            , brownbagsList doneBrownbags
+            , div [ class "previous-list" ] [ brownbagsList doneBrownbags ]
             ]
 
 
@@ -51,7 +49,7 @@ upcoming brownbags =
             Just brownbag ->
                 div [ class "feed--card upcoming" ]
                     [ h1 [] [ text "Upcoming Brown Bag" ]
-                    , p [] [ text "30 Mar" ]
+                    , p [] [ text brownbag.date ]
                     , brownbagsList [ brownbag ]
                     ]
 
@@ -67,9 +65,10 @@ shuffleView =
             , p [] [ text "30 Mar" ]
             ]
         , div [ class "shuffle--button" ]
-            [ button []
-                [ img [ src brandUrl ] []
-                , text "Shuffle"
+            [ button [ class "button is-info" ]
+                [ span [ class "icon" ]
+                    [ img [ src brandUrl ] [] ]
+                , span [] [ text "Shuffle" ]
                 ]
             ]
         ]
@@ -84,23 +83,32 @@ undone brownBags =
 
 viewUndone : List BrownBag -> Html msg
 viewUndone brownBags =
-    div [ class "brownbag--side-panel" ]
-        [ div [ class "side-panel-content" ]
-            [ h1 [] [ text "Who's on the list" ]
-            , brownbagsList brownBags
+    div [ class "column is-one-third" ]
+        [ div [ class "sidepanel" ]
+            [ h1 [ class "title is-4 heading" ] [ text "Who's on the list" ]
+            , div [ class "sidepanel-list" ] [ brownbagsList brownBags ]
             ]
         ]
 
 
 brownbagsList : List BrownBag -> Html msg
-brownbagsList brownbags =
-    ul [ class "feed--list" ]
-        (List.map presenterRow brownbags)
+brownbagsList =
+    div [] << List.map presenterRow
 
 
 presenterRow : BrownBag -> Html msg
-presenterRow { user } =
-    li []
-        [ img [ class "avatar", src user.profile.avatar ] []
-        , text user.username
+presenterRow ({ user } as brownbag) =
+    div [ class "media" ]
+        [ div [ class "media-left" ]
+            [ figure [ class "image is-48x48" ]
+                [ img [ alt "user avatar", src user.profile.avatar ]
+                    []
+                ]
+            ]
+        , div [ class "media-content" ]
+            [ div [ class "content" ]
+                [ p [ class "subtitle is-5" ] [ text user.username ]
+                , small [] [ text brownbag.date ]
+                ]
+            ]
         ]

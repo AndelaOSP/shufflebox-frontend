@@ -14,26 +14,26 @@ import Routing.Route exposing (Route(..))
 navBar : Html Msg
 navBar =
     nav [ class "container--nav" ]
-        [ div [ class "list" ]
+        [ div [ class "list columns is-two-thirds" ]
             [ ul []
                 [ li [] [ brownBagsLink ]
                 , li [] [ secretSantaLink ]
                 , li [] [ hangoutsLink ]
                 ]
             ]
-        , div [ class "image" ]
-            [ img
-                [ src brandUrl
-                , width 50
-                ]
-                []
-            ]
+          -- , div [ class "image" ]
+          --     [ img
+          --         [ src brandUrl
+          --         , width 50
+          --         ]
+          --         []
+          --     ]
         ]
 
 
 brownBagsLink : Html Msg
 brownBagsLink =
-    transformerLink BrownBagMsg Brownbag.ListBrownBags BrownBagsRoute "Brown Bag"
+    transformerLink BrownBagMsg Brownbag.ListBrownBags BrownBagsRoute "Brownbag"
 
 
 hangoutsLink : Html Msg
@@ -43,4 +43,4 @@ hangoutsLink =
 
 secretSantaLink : Html Msg
 secretSantaLink =
-    transformerLink SecretSantaMsg SecretSanta.ListSecretSanta SecretSantaRoute "Secret Santa"
+    transformerLink SecretSantaMsg SecretSanta.ListSecretSanta SecretSantaRoute "SecretSanta"

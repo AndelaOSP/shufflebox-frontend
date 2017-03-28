@@ -1,12 +1,10 @@
 .nav-bar {
-  @include outer-container(100%);
   background: $light-gray;
   display: flex;
   align-items: center;
   height: 10vh;
   margin-bottom: 1px;
   div {
-    @include span-columns(4);
     a {
       margin-left: 10px;
       font-size: 14px;
@@ -15,7 +13,6 @@
     }
   }
   nav {
-    @include span-columns(8);
     ul {
       display: flex;
       justify-content: flex-end;

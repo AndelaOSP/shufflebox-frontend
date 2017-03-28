@@ -6,8 +6,10 @@ import Html.Attributes exposing (class)
 
 sideNav : Html msg
 sideNav =
-    div [ class "brownbag--sidebar" ]
-        [ div [ class "sidenav" ]
-            [ nav [] [ text "What is you next event?" ]
+    div [ class "column is-one-third sidenav is-hidden-mobile" ]
+        [ div [ class "columns header" ]
+            [ div [ class "column is-2" ] []
+            , nav [ class "column is-10" ]
+                [ text "What is your next event?" ]
             ]
         ]

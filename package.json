@@ -20,7 +20,9 @@
     "url": "https://github.com/andelaosp/shufflebox-frontend/issues"
   },
   "homepage": "https://github.com/andelaosp/shufflebox-frontend#readme",
-  "dependencies": {},
+  "dependencies": {
+    "bulma": "^0.4.0"
+  },
   "devDependencies": {
     "autoprefixer": "^6.7.0",
     "css-loader": "^0.26.1",
