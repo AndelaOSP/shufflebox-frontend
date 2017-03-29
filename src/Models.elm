@@ -1,6 +1,6 @@
 module Models exposing (..)
 
-import App.BrownBag.Models exposing (BrownBag)
+import App.BrownBag.Models as BrownbagModel
 import App.Hangouts.Models exposing (HangoutModel, hangoutInitialModel)
 import App.SecretSanta.Models exposing (SecretSanta)
 import App.Auth.Models
@@ -13,7 +13,7 @@ type alias Flags =
 
 
 type alias Model =
-    { brownBags : List BrownBag
+    { brownbag : BrownbagModel.BrownbagModel
     , hangoutModel : HangoutModel
     , secretSantas : List SecretSanta
     , route : Routing.Route
@@ -23,7 +23,7 @@ type alias Model =
 
 initialModel : Routing.Route -> Model
 initialModel route =
-    { brownBags = []
+    { brownbag = BrownbagModel.initialModel
     , hangoutModel = hangoutInitialModel
     , secretSantas = []
     , route = route

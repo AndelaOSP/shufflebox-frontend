@@ -31,7 +31,7 @@ currentView : Model -> Html Msg
 currentView model =
     case model.route of
         BrownBagsRoute ->
-            Html.map BrownBagMsg (BrownBag.view model.brownBags)
+            Html.map BrownBagMsg (BrownBag.view model.brownbag)
 
         HangoutsRoute ->
             Html.map HangoutsMsg (Hangouts.view model.hangoutModel)
@@ -41,4 +41,4 @@ currentView model =
 
         _ ->
             -- Default to showing brownBags for any other message.
-            Html.map BrownBagMsg (BrownBag.view model.brownBags)
+            Html.map BrownBagMsg (BrownBag.view model.brownbag)

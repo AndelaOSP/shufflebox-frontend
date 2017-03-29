@@ -8,3 +8,4 @@ type Msg
     = OnFetchBrownBags (Result Http.Error (List BrownBag))
     | ListBrownBags
     | ShuffleBrownBag
+    | OnShuffleBrownbag (Result Http.Error BrownBag)

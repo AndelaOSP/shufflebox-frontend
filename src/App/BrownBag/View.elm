@@ -2,24 +2,25 @@ module App.BrownBag.View exposing (..)
 
 import Html exposing (..)
 import Html.Attributes exposing (..)
+import Html.Events exposing (onClick)
 import Common.Utils exposing (brandUrl)
-import App.BrownBag.Messages exposing (Msg(..))
-import App.BrownBag.Models exposing (BrownBag, Status(..))
+import App.BrownBag.Messages exposing (Msg(ShuffleBrownBag))
+import App.BrownBag.Models exposing (BrownbagModel, BrownBag, Status(..))
 
 
-view : List BrownBag -> Html Msg
-view brownBags =
+view : BrownbagModel -> Html Msg
+view ({ brownbags } as model) =
     div [ class "columns brownbag" ]
-        [ feed brownBags
-        , undone brownBags
+        [ feed model
+        , undone brownbags
         ]
 
 
-feed : List BrownBag -> Html Msg
-feed brownBags =
+feed : BrownbagModel -> Html Msg
+feed ({ brownbags } as model) =
     div [ class "column is-two-thirds brownbag--feed" ]
-        [ upcoming brownBags
-        , previous brownBags
+        [ upcoming model
+        , previous brownbags
         ]
 
 
@@ -37,8 +38,8 @@ previous brownbags =
             ]
 
 
-upcoming : List BrownBag -> Html msg
-upcoming brownbags =
+upcoming : BrownbagModel -> Html Msg
+upcoming ({ brownbags } as model) =
     let
         maybeUpcoming =
             brownbags
@@ -54,24 +55,30 @@ upcoming brownbags =
                     ]
 
             Nothing ->
-                shuffleView
+                shuffleView model
 
 
-shuffleView : Html msg
-shuffleView =
-    div [ class "feed--card shuffle" ]
-        [ div [ class "shuffle--content" ]
-            [ h1 [] [ text "Next brown bag is almost up..." ]
-            , p [] [ text "30 Mar" ]
-            ]
-        , div [ class "shuffle--button" ]
-            [ button [ class "button is-info" ]
-                [ span [ class "icon" ]
-                    [ img [ src brandUrl ] [] ]
-                , span [] [ text "Shuffle" ]
+shuffleView : BrownbagModel -> Html Msg
+shuffleView { loading } =
+    let
+        shuffleButton =
+            if not loading then
+                button [ class "button is-info", onClick ShuffleBrownBag ]
+                    [ span [ class "icon" ]
+                        [ img [ src brandUrl ] [] ]
+                    , span [] [ text "Shuffle" ]
+                    ]
+            else
+                button [ class "button is-info is-loading" ] [ text "Loading" ]
+    in
+        div [ class "feed--card shuffle" ]
+            [ div [ class "shuffle--content" ]
+                [ h1 [] [ text "Next brown bag is almost up..." ]
+                , p [] [ text "30 Mar" ]
                 ]
+            , div [ class "shuffle--button" ]
+                [ shuffleButton ]
             ]
-        ]
 
 
 undone : List BrownBag -> Html msg

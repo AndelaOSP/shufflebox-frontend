@@ -20,10 +20,14 @@ update msg model =
     case msg of
         BrownBagMsg subMsg ->
             let
-                ( updatedBrownBags, cmd ) =
-                    BrownBag.update subMsg model.brownBags
+                ( updatedBrownbagModel, cmd ) =
+                    BrownBag.update subMsg model
             in
-                ( { model | brownBags = updatedBrownBags }, Cmd.map BrownBagMsg cmd )
+                ( { model
+                    | brownbag = updatedBrownbagModel
+                  }
+                , Cmd.map BrownBagMsg cmd
+                )
 
         HangoutsMsg subMsg ->
             let

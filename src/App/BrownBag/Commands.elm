@@ -1,9 +1,10 @@
 module App.BrownBag.Commands exposing (..)
 
 import Http as H
-import HttpBuilder exposing (withExpect)
+import HttpBuilder exposing (withExpect, withJsonBody)
 import Json.Decode as Decode exposing (succeed, andThen, maybe)
 import Json.Decode.Extra exposing ((|:))
+import Json.Encode as Encode
 import Common.Utils.Http as Http
 import App.Auth.Models exposing (Token)
 import App.BrownBag.Messages exposing (Msg(..))
@@ -67,3 +68,21 @@ status s =
 
             _ ->
                 NotDone
+
+
+shuffleUrl : String
+shuffleUrl =
+    baseUrl ++ "/shuffle/"
+
+
+shuffleDataEncoder : Encode.Value
+shuffleDataEncoder =
+    [ ( "type", Encode.string "brownbag" ) ] |> Encode.object
+
+
+shuffleBrownbag : Token -> Cmd Msg
+shuffleBrownbag =
+    HttpBuilder.send OnShuffleBrownbag
+        << withJsonBody shuffleDataEncoder
+        << withExpect (H.expectJson memberDecoder)
+        << Http.post shuffleUrl
