@@ -4,28 +4,53 @@ import Navigation
 import Routing.Route exposing (Route(..), reverse)
 import Models exposing (Model)
 import App.Hangouts.Messages exposing (Msg(..))
-import App.Hangouts.Models exposing (..)
+import App.Hangouts.Models exposing (HangoutModel)
 import App.Hangouts.Commands exposing (shuffleHangouts)
 
 
-update : Msg -> Model -> ( List Hangout, Cmd Msg )
-update msg { hangouts, authModel } =
+update : Msg -> Model -> ( HangoutModel, Cmd Msg )
+update msg { hangoutsModel, authModel } =
     case msg of
         ListHangouts ->
-            ( hangouts, Navigation.newUrl (reverse HangoutsRoute) )
-        
+            ( hangoutsModel, Navigation.newUrl (reverse HangoutsRoute) )
+
         ShuffleHangouts ->
             let
-              cmd =
-                shuffleHangouts authModel.token
+                cmd =
+                    shuffleHangouts authModel.token
             in
-                (hangouts, cmd)
+                ( { hangoutsModel
+                    | loading = True
+                  }
+                , cmd
+                )
+
+        OnShuffleHangouts (Ok newHangout) ->
+            ( { hangoutsModel
+                | hangouts = newHangout :: hangoutsModel.hangouts
+                , loading = False
+              }
+            , Cmd.none
+            )
+
+        OnShuffleHangouts (Err err) ->
+            let
+                _ =
+                    Debug.log "Error shuffling hangouts " err
+            in
+                ( hangoutsModel, Cmd.none )
 
         OnFetchHangouts (Ok newHangouts) ->
-            ( newHangouts, Cmd.none )
+            ( { hangoutsModel
+                | hangouts = newHangouts
+                , loading = False
+              }
+            , Cmd.none
+            )
 
         OnFetchHangouts (Err err) ->
             let
-                _ = Debug.log "Error fetching hangouts " err
+                _ =
+                    Debug.log "Error fetching hangouts " err
             in
-                ( hangouts, Cmd.none )
+                ( hangoutsModel, Cmd.none )

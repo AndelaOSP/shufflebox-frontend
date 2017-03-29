@@ -25,8 +25,8 @@ shuffleHangouts : Token -> Cmd Msg
 shuffleHangouts token =
     Http.post shuffleUrl token
         |> withJsonBody hangoutsPayload
-        |> withExpect (H.expectJson <| decodeCollection hangoutDecoder)
-        |> HttpBuilder.send OnFetchHangouts
+        |> withExpect (H.expectJson hangoutDecoder)
+        |> HttpBuilder.send OnShuffleHangouts
 
 
 hangoutsPayload : Encode.Value

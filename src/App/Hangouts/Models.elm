@@ -14,3 +14,14 @@ type alias Group =
     { groupId : Int
     , members : List User
     }
+
+
+type alias HangoutModel =
+    { loading : Bool
+    , hangouts : List Hangout
+    }
+
+
+hangoutInitialModel : HangoutModel
+hangoutInitialModel =
+    HangoutModel False []
