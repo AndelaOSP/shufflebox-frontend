@@ -43,3 +43,13 @@ update msg ({ brownbag, authModel } as model) =
                     Debug.log "Error shuffling brownbag" err
             in
                 ( { brownbag | loading = False }, Cmd.none )
+
+        OnFetchUndone (Ok undoneUsers) ->
+            ( { brownbag | undone = undoneUsers }, Cmd.none )
+
+        OnFetchUndone (Err err) ->
+            let
+                _ =
+                    Debug.log "Error fetching undone users" err
+            in
+                ( brownbag, Cmd.none )

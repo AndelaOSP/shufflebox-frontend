@@ -2,6 +2,7 @@ module App.BrownBag.Messages exposing (..)
 
 import Http
 import App.BrownBag.Models exposing (BrownBag)
+import App.Auth.Models exposing (User)
 
 
 type Msg
@@ -9,3 +10,4 @@ type Msg
     | ListBrownBags
     | ShuffleBrownBag
     | OnShuffleBrownbag (Result Http.Error BrownBag)
+    | OnFetchUndone (Result Http.Error (List User))

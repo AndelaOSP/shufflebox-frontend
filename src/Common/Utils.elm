@@ -34,3 +34,8 @@ isJust aMaybe =
 
         Nothing ->
             False
+
+
+fork : (( a, b ) -> c) -> (d -> a) -> (d -> b) -> d -> c
+fork lastly first other =
+    (\x -> lastly ( first x, other x ))

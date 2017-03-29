@@ -6,21 +6,22 @@ import Html.Events exposing (onClick)
 import Common.Utils exposing (brandUrl)
 import App.BrownBag.Messages exposing (Msg(ShuffleBrownBag))
 import App.BrownBag.Models exposing (BrownbagModel, BrownBag, Status(..))
+import App.Auth.Models exposing (User)
 
 
 view : BrownbagModel -> Html Msg
-view ({ brownbags } as model) =
+view model =
     div [ class "columns brownbag" ]
         [ feed model
-        , undone brownbags
+        , viewUndone model.undone
         ]
 
 
 feed : BrownbagModel -> Html Msg
-feed ({ brownbags } as model) =
+feed model =
     div [ class "column is-two-thirds brownbag--feed" ]
         [ upcoming model
-        , previous brownbags
+        , previous model.brownbags
         ]
 
 
@@ -39,10 +40,10 @@ previous brownbags =
 
 
 upcoming : BrownbagModel -> Html Msg
-upcoming ({ brownbags } as model) =
+upcoming model =
     let
         maybeUpcoming =
-            brownbags
+            model.brownbags
                 |> List.filter (\p -> p.status == NextInLine)
                 |> List.head
     in
@@ -81,20 +82,30 @@ shuffleView { loading } =
             ]
 
 
-undone : List BrownBag -> Html msg
-undone brownBags =
-    brownBags
-        |> List.filter (\b -> b.status == NotDone)
-        |> viewUndone
-
-
-viewUndone : List BrownBag -> Html msg
-viewUndone brownBags =
+viewUndone : List User -> Html msg
+viewUndone users =
     div [ class "column is-one-third" ]
         [ div [ class "sidepanel" ]
             [ h1 [ class "title is-4 heading" ] [ text "Who's on the list" ]
-            , div [ class "sidepanel-list" ] [ brownbagsList brownBags ]
+            , div [ class "sidepanel-list" ] (undoneUsersList users)
             ]
+        ]
+
+
+undoneUsersList : List User -> List (Html msg)
+undoneUsersList =
+    List.map undone
+
+
+undone : User -> Html msg
+undone user =
+    div [ class "columns" ]
+        [ div [ class "column is-4" ]
+            [ figure [ class "image is-48x48" ]
+                [ img [ src user.profile.avatar, alt "avatar" ] [] ]
+            ]
+        , div [ class "column is-centered" ]
+            [ span [ class "subtitle is-6" ] [ text user.username ] ]
         ]
 
 
