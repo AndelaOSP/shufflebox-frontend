@@ -4,7 +4,7 @@ import Http as H
 import HttpBuilder exposing (withExpect, withHeader, withJsonBody, send)
 import Json.Decode as Decode exposing (Decoder, succeed, string, int, maybe)
 import Json.Decode.Extra exposing ((|:))
-import Json.Encode as Encode exposing (object, string)
+import Json.Encode as Encode
 import Common.Utils.Http as Http
 import Common.Utils exposing (hangoutsUrl, shuffleUrl)
 import App.Decoders.Common exposing (..)
@@ -31,7 +31,7 @@ shuffleHangouts token =
 
 hangoutsPayload : Encode.Value
 hangoutsPayload =
-    object <|
+    Encode.object <|
         [ ( "type", Encode.string "hangout" ) ]
 
 

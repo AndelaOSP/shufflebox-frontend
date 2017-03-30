@@ -1,7 +1,7 @@
 module App.Hangouts.Update exposing (..)
 
 import Navigation
-import Paginate exposing (..)
+import Paginate exposing (fromList, goTo, next, prev, first, last)
 import Routing.Route exposing (Route(..), reverse)
 import Models exposing (Model)
 import App.Hangouts.Messages exposing (Msg(..))
@@ -16,15 +16,11 @@ update msg { hangoutModel, authModel } =
             ( hangoutModel, Navigation.newUrl (reverse HangoutsRoute) )
 
         ShuffleHangouts ->
-            let
-                cmd =
-                    shuffleHangouts authModel.token
-            in
-                ( { hangoutModel
-                    | loading = True
-                  }
-                , cmd
-                )
+            ( { hangoutModel
+                | loading = True
+              }
+            , (shuffleHangouts authModel.token)
+            )
 
         OnShuffleHangouts (Ok newHangout) ->
             ( { hangoutModel

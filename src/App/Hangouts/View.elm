@@ -16,7 +16,7 @@ view hangoutModel =
             "button is-primary is-outlined"
 
         isShuffling =
-            if hangoutModel.loading == True then
+            if hangoutModel.loading then
                 buttonClass ++ "is-loading"
             else
                 buttonClass
