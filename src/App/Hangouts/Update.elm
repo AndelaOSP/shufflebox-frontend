@@ -1,7 +1,7 @@
 module App.Hangouts.Update exposing (..)
 
 import Navigation
-import Paginate exposing (fromList, goTo, next, prev, first, last)
+import Paginate
 import Routing.Route exposing (Route(..), reverse)
 import Models exposing (Model)
 import App.Hangouts.Messages exposing (Msg(..))

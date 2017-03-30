@@ -1,7 +1,7 @@
 module App.Hangouts.Commands exposing (..)
 
 import Http as H
-import HttpBuilder exposing (withExpect, withHeader, withJsonBody, send)
+import HttpBuilder exposing (withExpect, withHeader, withJsonBody)
 import Json.Decode as Decode exposing (Decoder, succeed, string, int, maybe)
 import Json.Decode.Extra exposing ((|:))
 import Json.Encode as Encode
