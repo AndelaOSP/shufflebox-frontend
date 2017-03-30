@@ -15,7 +15,7 @@ import App.Common.Nav exposing (navBar)
 view : Model -> Html Msg
 view model =
     div [ class "section is-paddingless" ]
-        [ div [ class "container" ]
+        [ div [ class "container ctnr" ]
             [ div [ class "columns app-content" ]
                 [ sideNav
                 , div [ class "content column is-two-thirds is-paddingless" ]
@@ -34,7 +34,7 @@ currentView model =
             Html.map BrownBagMsg (BrownBag.view model.brownBags)
 
         HangoutsRoute ->
-            Hangouts.view model.hangouts
+            Html.map HangoutsMsg (Hangouts.view model.hangoutModel)
 
         SecretSantaRoute ->
             SecretSanta.view

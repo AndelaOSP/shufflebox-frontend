@@ -1,44 +1,61 @@
 module App.Hangouts.View exposing (view)
 
 import Html exposing (..)
+import Paginate exposing (..)
 import Html.Attributes exposing (..)
-import App.Hangouts.Models exposing (Hangout, Group)
+import Html.Events exposing (onClick)
+import App.Hangouts.Models exposing (HangoutModel, Hangout, Group)
+import App.Hangouts.Messages exposing (Msg(..))
 import App.Auth.Models exposing (User)
 
 
-view : List Hangout -> Html msg
-view hangouts =
-    div [ class "table" ]
-        [ table []
-            (tr [] [ th [ colspan 4 ] [ text "HANGOUTS" ] ] :: hangoutsView hangouts)
-        , div [ class "hangout--button" ]
-            [ button []
-                [ img [ src "https://www.dropbox.com/s/okgmtdpih1xxau3/Shuffle.png?raw=1" ] []
-                , b [] [ text "SHUFFLE" ]
+view : HangoutModel -> Html Msg
+view hangoutModel =
+    let
+        buttonClass =
+            "button is-primary is-outlined"
+
+        isShuffling =
+            if hangoutModel.loading then
+                buttonClass ++ "is-loading"
+            else
+                buttonClass
+
+        hangoutDate =
+            Maybe.withDefault "No hangout yet" hangoutModel.hangout.date
+    in
+        div [ class "hangouts" ]
+            [ h2 [] [ text hangoutDate ]
+            , div []
+                [ ul []
+                    (List.map hangoutPageView <| Paginate.page hangoutModel.pGroups)
+                ]
+            , a [ class "button", onClick Prev ]
+                [ span [ class "icon is-small" ]
+                    [ i [ class "fa fa-chevron-left" ] [] ]
+                ]
+            , a [ class "button", onClick Next ]
+                [ span [ class "icon is-small" ]
+                    [ i [ class "fa fa-chevron-right" ] [] ]
+                ]
+            , div [ class "hangout--button" ]
+                [ button [ onClick ShuffleHangouts, class isShuffling ]
+                    [ text "SHUFFLE" ]
                 ]
             ]
+
+
+hangoutPageView : Group -> Html msg
+hangoutPageView pGroup =
+    li []
+        [ div []
+            (List.map memberView pGroup.members)
         ]
-
-
-hangoutsView : List Hangout -> List (Html msg)
-hangoutsView hangouts =
-    List.concatMap hangoutView hangouts
-
-
-hangoutView : Hangout -> List (Html msg)
-hangoutView hangout =
-    List.map groupView hangout.groups
-
-
-groupView : Group -> Html msg
-groupView group_ =
-    tr []
-        (List.map memberView group_.members)
 
 
 memberView : User -> Html msg
 memberView member =
-    td []
+    div [ class "" ]
         [ img
             [ src member.profile.avatar
             , width 50

@@ -21,8 +21,3 @@ stringDecoder =
 intDecoder : String -> Decoder Int
 intDecoder =
     decoderFirstField int
-
-
-baseUrl : String
-baseUrl =
-    "http://localhost:8000/api"

@@ -28,9 +28,9 @@ update msg model =
         HangoutsMsg subMsg ->
             let
                 ( updatedHangouts, cmd ) =
-                    Hangouts.update subMsg model.hangouts
+                    Hangouts.update subMsg model
             in
-                ( { model | hangouts = updatedHangouts }, Cmd.map HangoutsMsg cmd )
+                ( { model | hangoutModel = updatedHangouts }, Cmd.map HangoutsMsg cmd )
 
         SecretSantaMsg subMsg ->
             let

@@ -5,6 +5,7 @@ import HttpBuilder exposing (withExpect)
 import Json.Decode exposing (Decoder, succeed)
 import Json.Decode.Extra exposing ((|:))
 import Common.Utils.Http as Http
+import Common.Utils exposing (baseUrl)
 import App.SecretSanta.Messages exposing (Msg(..))
 import App.Decoders.Common exposing (..)
 import App.SecretSanta.Models exposing (SecretSanta)

@@ -1,22 +1,93 @@
 module App.Hangouts.Update exposing (..)
 
 import Navigation
+import Paginate
 import Routing.Route exposing (Route(..), reverse)
+import Models exposing (Model)
 import App.Hangouts.Messages exposing (Msg(..))
-import App.Hangouts.Models exposing (..)
+import App.Hangouts.Models exposing (HangoutModel)
+import App.Hangouts.Commands exposing (shuffleHangouts)
 
 
-update : Msg -> List Hangout -> ( List Hangout, Cmd Msg )
-update msg hangouts =
+update : Msg -> Model -> ( HangoutModel, Cmd Msg )
+update msg { hangoutModel, authModel } =
     case msg of
         ListHangouts ->
-            ( hangouts, Navigation.newUrl (reverse HangoutsRoute) )
+            ( hangoutModel, Navigation.newUrl (reverse HangoutsRoute) )
+
+        ShuffleHangouts ->
+            ( { hangoutModel
+                | loading = True
+              }
+            , (shuffleHangouts authModel.token)
+            )
+
+        OnShuffleHangouts (Ok newHangout) ->
+            ( { hangoutModel
+                | hangout = newHangout
+                , loading = False
+              }
+            , Cmd.none
+            )
+
+        OnShuffleHangouts (Err err) ->
+            let
+                _ =
+                    Debug.log "Error shuffling hangouts " err
+            in
+                ( hangoutModel, Cmd.none )
 
         OnFetchHangouts (Ok newHangouts) ->
-            ( newHangouts, Cmd.none )
+            let
+                singleHangout =
+                    Maybe.withDefault hangoutModel.hangout (List.head newHangouts)
+            in
+                ( { hangoutModel
+                    | hangout = singleHangout
+                    , pGroups = Paginate.fromList 1 singleHangout.groups
+                    , loading = False
+                  }
+                , Cmd.none
+                )
 
         OnFetchHangouts (Err err) ->
             let
-                _ = Debug.log "err" err
+                _ =
+                    Debug.log "Error fetching hangouts " err
             in
-                ( hangouts, Cmd.none )
+                ( hangoutModel, Cmd.none )
+
+        GoTo index ->
+            ( { hangoutModel
+                | pGroups = Paginate.goTo index hangoutModel.pGroups
+              }
+            , Cmd.none
+            )
+
+        Next ->
+            ( { hangoutModel
+                | pGroups = Paginate.next hangoutModel.pGroups
+              }
+            , Cmd.none
+            )
+
+        Prev ->
+            ( { hangoutModel
+                | pGroups = Paginate.prev hangoutModel.pGroups
+              }
+            , Cmd.none
+            )
+
+        First ->
+            ( { hangoutModel
+                | pGroups = Paginate.first hangoutModel.pGroups
+              }
+            , Cmd.none
+            )
+
+        Last ->
+            ( { hangoutModel
+                | pGroups = Paginate.last hangoutModel.pGroups
+              }
+            , Cmd.none
+            )
