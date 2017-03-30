@@ -2,7 +2,7 @@ module App.Hangouts.Commands exposing (..)
 
 import Http as H
 import HttpBuilder exposing (withExpect, withHeader, withJsonBody, send)
-import Json.Decode as Decode exposing (Decoder, succeed, string, int)
+import Json.Decode as Decode exposing (Decoder, succeed, string, int, maybe)
 import Json.Decode.Extra exposing ((|:))
 import Json.Encode as Encode exposing (object, string)
 import Common.Utils.Http as Http
@@ -38,8 +38,8 @@ hangoutsPayload =
 hangoutDecoder : Decoder Hangout
 hangoutDecoder =
     succeed Hangout
-        |: intDecoder "id"
-        |: stringDecoder "date"
+        |: maybe (intDecoder "id")
+        |: maybe (stringDecoder "date")
         |: groupsDecoder "groups"
 
 

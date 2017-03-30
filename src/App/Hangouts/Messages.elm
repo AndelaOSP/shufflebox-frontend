@@ -9,3 +9,8 @@ type Msg
     | ShuffleHangouts
     | OnShuffleHangouts (Result Http.Error Hangout)
     | OnFetchHangouts (Result Http.Error (List Hangout))
+    | Next
+    | Prev
+    | First
+    | Last
+    | GoTo Int

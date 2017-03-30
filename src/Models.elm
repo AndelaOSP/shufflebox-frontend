@@ -14,7 +14,7 @@ type alias Flags =
 
 type alias Model =
     { brownBags : List BrownBag
-    , hangoutsModel : HangoutModel
+    , hangoutModel : HangoutModel
     , secretSantas : List SecretSanta
     , route : Routing.Route
     , authModel : App.Auth.Models.Model
@@ -24,7 +24,7 @@ type alias Model =
 initialModel : Routing.Route -> Model
 initialModel route =
     { brownBags = []
-    , hangoutsModel = hangoutInitialModel
+    , hangoutModel = hangoutInitialModel
     , secretSantas = []
     , route = route
     , authModel = App.Auth.Models.initialModel Nothing

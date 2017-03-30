@@ -1,11 +1,12 @@
 module App.Hangouts.Models exposing (..)
 
+import Paginate exposing (PaginatedList)
 import App.Auth.Models exposing (User)
 
 
 type alias Hangout =
-    { id : Int
-    , date : String
+    { id : Maybe Int
+    , date : Maybe String
     , groups : List Group
     }
 
@@ -18,10 +19,11 @@ type alias Group =
 
 type alias HangoutModel =
     { loading : Bool
-    , hangouts : List Hangout
+    , hangout : Hangout
+    , pGroups: PaginatedList Group
     }
 
 
 hangoutInitialModel : HangoutModel
 hangoutInitialModel =
-    HangoutModel False []
+    HangoutModel False (Hangout Nothing Nothing [] ) (Paginate.fromList 10 [])

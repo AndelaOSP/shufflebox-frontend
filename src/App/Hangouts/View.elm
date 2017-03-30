@@ -20,14 +20,21 @@ view hangoutsModel =
             else
                 buttonClass
     in
-        div []
-            [ table [ class "table is-bordered is-striped" ]
-                (tr [] [ th [ colspan 4 ] [ text "HANGOUTS" ] ] :: hangoutsView hangoutsModel.hangouts)
-            , div [ class "hangout--button" ]
-                [ button [ onClick ShuffleHangouts, class isShuffling ]
-                    [ text "SHUFFLE" ]
-                ]
-            ]
+        div [ class "hangouts" ]
+            []
+        -- div []
+        --     [ table [ class "table is-bordered is-striped" ]
+        --         (tr [] [ th [ colspan 4 ] [ text "HANGOUTS" ] ] :: hangoutsView hangoutsModel.hangouts)
+        --     , div [ class "hangout--button" ]
+        --         [ button [ onClick ShuffleHangouts, class isShuffling ]
+        --             [ text "SHUFFLE" ]
+        --         ]
+        --     ]
+
+
+-- hangoutsPageView : List Hangout -> Html Msg
+-- hangoutsPageView hangouts =
+--     -- hangouts
 
 
 hangoutsView : List Hangout -> List (Html msg)
@@ -48,7 +55,7 @@ groupView group_ =
 
 memberView : User -> Html msg
 memberView member =
-    td []
+    div [ class "" ]
         [ img
             [ src member.profile.avatar
             , width 50
