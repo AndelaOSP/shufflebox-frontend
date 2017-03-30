@@ -20,10 +20,10 @@ type alias Group =
 type alias HangoutModel =
     { loading : Bool
     , hangout : Hangout
-    , pGroups: PaginatedList Group
+    , pGroups : PaginatedList Group
     }
 
 
 hangoutInitialModel : HangoutModel
 hangoutInitialModel =
-    HangoutModel False (Hangout Nothing Nothing [] ) (Paginate.fromList 10 [])
+    HangoutModel False (Hangout Nothing Nothing []) (Paginate.fromList 1 [])

@@ -1,6 +1,7 @@
 module App.Hangouts.View exposing (view)
 
 import Html exposing (..)
+import Paginate exposing (..)
 import Html.Attributes exposing (..)
 import Html.Events exposing (onClick)
 import App.Hangouts.Models exposing (HangoutModel, Hangout, Group)
@@ -9,48 +10,47 @@ import App.Auth.Models exposing (User)
 
 
 view : HangoutModel -> Html Msg
-view hangoutsModel =
+view hangoutModel =
     let
         buttonClass =
             "button is-primary is-outlined"
 
         isShuffling =
-            if hangoutsModel.loading == True then
+            if hangoutModel.loading == True then
                 buttonClass ++ "is-loading"
             else
                 buttonClass
+
+        hangoutDate =
+            Maybe.withDefault "No hangout yet" hangoutModel.hangout.date
     in
         div [ class "hangouts" ]
-            []
-        -- div []
-        --     [ table [ class "table is-bordered is-striped" ]
-        --         (tr [] [ th [ colspan 4 ] [ text "HANGOUTS" ] ] :: hangoutsView hangoutsModel.hangouts)
-        --     , div [ class "hangout--button" ]
-        --         [ button [ onClick ShuffleHangouts, class isShuffling ]
-        --             [ text "SHUFFLE" ]
-        --         ]
-        --     ]
+            [ h2 [] [ text hangoutDate ]
+            , div []
+                [ ul []
+                    (List.map hangoutPageView <| Paginate.page hangoutModel.pGroups)
+                ]
+            , a [ class "button", onClick Prev ]
+                [ span [ class "icon is-small" ]
+                    [ i [ class "fa fa-chevron-left" ] [] ]
+                ]
+            , a [ class "button", onClick Next ]
+                [ span [ class "icon is-small" ]
+                    [ i [ class "fa fa-chevron-right" ] [] ]
+                ]
+            , div [ class "hangout--button" ]
+                [ button [ onClick ShuffleHangouts, class isShuffling ]
+                    [ text "SHUFFLE" ]
+                ]
+            ]
 
 
--- hangoutsPageView : List Hangout -> Html Msg
--- hangoutsPageView hangouts =
---     -- hangouts
-
-
-hangoutsView : List Hangout -> List (Html msg)
-hangoutsView hangouts =
-    List.concatMap hangoutView hangouts
-
-
-hangoutView : Hangout -> List (Html msg)
-hangoutView hangout =
-    List.map groupView hangout.groups
-
-
-groupView : Group -> Html msg
-groupView group_ =
-    tr []
-        (List.map memberView group_.members)
+hangoutPageView : Group -> Html msg
+hangoutPageView pGroup =
+    li []
+        [ div []
+            (List.map memberView pGroup.members)
+        ]
 
 
 memberView : User -> Html msg

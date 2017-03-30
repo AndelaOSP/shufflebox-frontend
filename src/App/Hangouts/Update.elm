@@ -48,7 +48,7 @@ update msg { hangoutModel, authModel } =
             in
                 ( { hangoutModel
                     | hangout = singleHangout
-                    , pGroups = Paginate.fromList 10 singleHangout.groups
+                    , pGroups = Paginate.fromList 1 singleHangout.groups
                     , loading = False
                   }
                 , Cmd.none
