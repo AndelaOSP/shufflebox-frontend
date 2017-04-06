@@ -1,10 +1,7 @@
 module Sample exposing (..)
 import Test exposing(..)
 import Expect
-all : Test
-all =
-  describe "New Test Case"
-      [ sampleTest]
+
 
 sampleTest : Test
 sampleTest =

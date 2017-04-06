@@ -18,7 +18,7 @@ const config = {
     rules: [
       {
         test: /\.scss$/,
-        use : ['style-loader','css-loader', 'sass-loader', 'postcss-loader']
+        use : ['style-loader', 'css-loader', 'sass-loader', 'postcss-loader']
       },
       {
         test:    /\.html$/,
@@ -29,7 +29,7 @@ const config = {
       },
       {
         test:    /\.elm$/,
-        use: ['elm-hot-loader','elm-webpack-loader'],
+        use: ['elm-hot-loader', 'elm-webpack-loader'],
         exclude: [/elm-stuff/, /node_modules/]
       },
       {
