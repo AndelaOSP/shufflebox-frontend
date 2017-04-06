@@ -11,6 +11,7 @@ all =
     describe "Sample Test Suite"
         [ unitTestExample
         , fuzzTestsExample
+        , Sample.sampleTest
         ]
 
 
