@@ -15,28 +15,34 @@ const config = {
   },
 
   module: {
-    loaders: [
+    rules: [
       {
         test: /\.scss$/,
-        loader : 'style-loader!css-loader!sass-loader!postcss-loader'
+        use : ['style-loader','css-loader', 'sass-loader', 'postcss-loader']
       },
       {
         test:    /\.html$/,
-        exclude: /node_modules/,
-        loader:  'file-loader?name=[name].[ext]',
+        use: [{
+          loader: 'file-loader?name=[name].[ext]'
+        }],
+        exclude: /node_modules/
       },
       {
         test:    /\.elm$/,
-        exclude: [/elm-stuff/, /node_modules/],
-        loader: 'elm-hot-loader!elm-webpack-loader',
+        use: ['elm-hot-loader','elm-webpack-loader'],
+        exclude: [/elm-stuff/, /node_modules/]
       },
       {
         test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
-        loader: 'url?limit=10000&mimetype=application/font-woff',
+        use: [{
+          loader: 'url?limit=10000&mimetype=application/font-woff'
+        }]
       },
       {
         test: /\.(ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
-        loader: 'file',
+        use: [{
+          loader: 'file-loader'
+        }]
       },
     ],
 
@@ -58,7 +64,6 @@ if (process.env.NODE_ENV !== 'production') {
   ];
 } else {
   config.plugins = [
-    new webpack.optimize.DedupePlugin(),
     new webpack.optimize.UglifyJsPlugin({
       compress: {
         screw_ie8: true,
