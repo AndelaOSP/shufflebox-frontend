@@ -16,11 +16,7 @@ const entry = PRODUCTION
       ?     {
               src:
               [
-                '/index.js'
-              ],
-              vendor:
-              [
-                'bulma',
+                './index.js'
               ]
             }
       :
@@ -67,7 +63,7 @@ const plugins = PRODUCTION
 //define plugins for both envs
 plugins.push(
   new webpack.DefinePlugin({
-    'process.env': { NODE_ENV: JSON.stringify('production') }
+    'process.env': { NODE_ENV: JSON.stringify(process.env.NODE_ENV)}
   })
 );
 
