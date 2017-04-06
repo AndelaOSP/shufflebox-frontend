@@ -14,7 +14,7 @@ const TEST = process.env.NODE_ENV === 'test'
 
 const entry = PRODUCTION
       ?     {
-              app:
+              src:
               [
                 '/index.js'
               ],
@@ -51,8 +51,8 @@ const plugins = PRODUCTION
         }),
         new SWPrecacheWebpackPlugin(
           {
-            cacheId: 'hapihour',
-            filename: 'hapi-sw.js',
+            cacheId: 'shuffle-box',
+            filename: 'shuffle.js',
             forceDelete: true,
             minify: true,
             skipWaiting: true,
