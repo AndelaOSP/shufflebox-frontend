@@ -2,25 +2,54 @@ module App.BrownBag.Update exposing (..)
 
 import Navigation
 import Routing.Route exposing (Route(..), reverse)
-import App.BrownBag.Models exposing (BrownBag)
+import Models exposing (Model)
+import App.BrownBag.Models exposing (BrownbagModel, BrownBag)
 import App.BrownBag.Messages exposing (Msg(..))
+import App.BrownBag.Commands exposing (shuffleBrownbag)
 
 
-update : Msg -> List BrownBag -> ( List BrownBag, Cmd Msg )
-update msg brownBags =
+update : Msg -> Model -> ( BrownbagModel, Cmd Msg )
+update msg ({ brownbag, authModel } as model) =
     case msg of
         ListBrownBags ->
-            ( brownBags, Navigation.newUrl (reverse BrownBagsRoute) )
+            ( brownbag, Navigation.newUrl (reverse BrownBagsRoute) )
 
         OnFetchBrownBags (Ok newBrownBags) ->
-            ( newBrownBags, Cmd.none )
+            ( { brownbag | brownbags = newBrownBags }, Cmd.none )
 
         OnFetchBrownBags (Err err) ->
             let
                 _ =
                     Debug.log "Error decoding brownBags" err
             in
-                ( brownBags, Cmd.none )
+                ( brownbag, Cmd.none )
 
-        _ ->
-            ( brownBags, Cmd.none )
+        ShuffleBrownBag ->
+            ( { brownbag | loading = True }, shuffleBrownbag authModel.token )
+
+        OnShuffleBrownbag (Ok newBrownbag) ->
+            let
+                newBrownbagModel =
+                    { brownbag
+                        | brownbags = newBrownbag :: brownbag.brownbags
+                        , loading = False
+                    }
+            in
+                ( newBrownbagModel, Cmd.none )
+
+        OnShuffleBrownbag (Err err) ->
+            let
+                _ =
+                    Debug.log "Error shuffling brownbag" err
+            in
+                ( { brownbag | loading = False }, Cmd.none )
+
+        OnFetchUndone (Ok undoneUsers) ->
+            ( { brownbag | undone = undoneUsers }, Cmd.none )
+
+        OnFetchUndone (Err err) ->
+            let
+                _ =
+                    Debug.log "Error fetching undone users" err
+            in
+                ( brownbag, Cmd.none )

@@ -8,7 +8,7 @@ import App.Auth.Update as Auth
 import App.Auth.Messages as AuthMessage
 import App.Auth.Ports as AuthPorts
 import App.BrownBag.Update as BrownBag
-import App.BrownBag.Commands exposing (getBrownBags)
+import App.BrownBag.Commands exposing (hydrateBrownbagData)
 import App.Hangouts.Update as Hangouts
 import App.Hangouts.Commands exposing (getHangouts)
 import App.SecretSanta.Update as SecretSanta
@@ -20,10 +20,14 @@ update msg model =
     case msg of
         BrownBagMsg subMsg ->
             let
-                ( updatedBrownBags, cmd ) =
-                    BrownBag.update subMsg model.brownBags
+                ( updatedBrownbagModel, cmd ) =
+                    BrownBag.update subMsg model
             in
-                ( { model | brownBags = updatedBrownBags }, Cmd.map BrownBagMsg cmd )
+                ( { model
+                    | brownbag = updatedBrownbagModel
+                  }
+                , Cmd.map BrownBagMsg cmd
+                )
 
         HangoutsMsg subMsg ->
             let
@@ -60,7 +64,7 @@ receiveToken token model =
             update (AuthMsg <| AuthMessage.ReceiveToken token) model
     in
         (newModel
-            ! [ (Cmd.map BrownBagMsg <| getBrownBags token)
+            ! [ (Cmd.map BrownBagMsg <| Cmd.batch <| hydrateBrownbagData token)
               , (Cmd.map HangoutsMsg <| getHangouts token)
               , (Cmd.map SecretSantaMsg <| getSecretSantas token)
               , cmd

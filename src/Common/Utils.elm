@@ -34,3 +34,11 @@ isJust aMaybe =
 
         Nothing ->
             False
+
+
+{-| Call a function using the results of calling two other functions with the
+    same argument.
+-}
+fork : (( a, b ) -> c) -> (d -> a) -> (d -> b) -> d -> c
+fork lastly first other x =
+    lastly ( first x, other x )

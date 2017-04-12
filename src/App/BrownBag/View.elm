@@ -2,24 +2,26 @@ module App.BrownBag.View exposing (..)
 
 import Html exposing (..)
 import Html.Attributes exposing (..)
+import Html.Events exposing (onClick)
 import Common.Utils exposing (brandUrl)
-import App.BrownBag.Messages exposing (Msg(..))
-import App.BrownBag.Models exposing (BrownBag, Status(..))
+import App.BrownBag.Messages exposing (Msg(ShuffleBrownBag))
+import App.BrownBag.Models exposing (BrownbagModel, BrownBag, Status(..))
+import App.Auth.Models exposing (User)
 
 
-view : List BrownBag -> Html Msg
-view brownBags =
+view : BrownbagModel -> Html Msg
+view model =
     div [ class "columns brownbag" ]
-        [ feed brownBags
-        , undone brownBags
+        [ feed model
+        , viewUndone model.undone
         ]
 
 
-feed : List BrownBag -> Html Msg
-feed brownBags =
+feed : BrownbagModel -> Html Msg
+feed model =
     div [ class "column is-two-thirds brownbag--feed" ]
-        [ upcoming brownBags
-        , previous brownBags
+        [ upcoming model
+        , previous model.brownbags
         ]
 
 
@@ -37,11 +39,11 @@ previous brownbags =
             ]
 
 
-upcoming : List BrownBag -> Html msg
-upcoming brownbags =
+upcoming : BrownbagModel -> Html Msg
+upcoming model =
     let
         maybeUpcoming =
-            brownbags
+            model.brownbags
                 |> List.filter (\p -> p.status == NextInLine)
                 |> List.head
     in
@@ -54,40 +56,56 @@ upcoming brownbags =
                     ]
 
             Nothing ->
-                shuffleView
+                shuffleView model
 
 
-shuffleView : Html msg
-shuffleView =
-    div [ class "feed--card shuffle" ]
-        [ div [ class "shuffle--content" ]
-            [ h1 [] [ text "Next brown bag is almost up..." ]
-            , p [] [ text "30 Mar" ]
-            ]
-        , div [ class "shuffle--button" ]
-            [ button [ class "button is-info" ]
-                [ span [ class "icon" ]
-                    [ img [ src brandUrl ] [] ]
-                , span [] [ text "Shuffle" ]
+shuffleView : BrownbagModel -> Html Msg
+shuffleView { loading } =
+    let
+        shuffleButton =
+            if not loading then
+                button [ class "button is-info", onClick ShuffleBrownBag ]
+                    [ span [ class "icon" ]
+                        [ img [ src brandUrl ] [] ]
+                    , span [] [ text "Shuffle" ]
+                    ]
+            else
+                button [ class "button is-info is-loading" ] [ text "Loading" ]
+    in
+        div [ class "feed--card shuffle" ]
+            [ div [ class "shuffle--content" ]
+                [ h1 [] [ text "Next brown bag is almost up..." ]
+                , p [] [ text "30 Mar" ]
                 ]
+            , div [ class "shuffle--button" ]
+                [ shuffleButton ]
+            ]
+
+
+viewUndone : List User -> Html msg
+viewUndone users =
+    div [ class "column is-one-third" ]
+        [ div [ class "sidepanel" ]
+            [ h1 [ class "title is-4 heading" ] [ text "Who's on the list" ]
+            , div [ class "sidepanel-list" ] (undoneUsersList users)
             ]
         ]
 
 
-undone : List BrownBag -> Html msg
-undone brownBags =
-    brownBags
-        |> List.filter (\b -> b.status == NotDone)
-        |> viewUndone
+undoneUsersList : List User -> List (Html msg)
+undoneUsersList =
+    List.map undone
 
 
-viewUndone : List BrownBag -> Html msg
-viewUndone brownBags =
-    div [ class "column is-one-third" ]
-        [ div [ class "sidepanel" ]
-            [ h1 [ class "title is-4 heading" ] [ text "Who's on the list" ]
-            , div [ class "sidepanel-list" ] [ brownbagsList brownBags ]
+undone : User -> Html msg
+undone user =
+    div [ class "columns" ]
+        [ div [ class "column is-4" ]
+            [ figure [ class "image is-48x48" ]
+                [ img [ src user.profile.avatar, alt "avatar" ] [] ]
             ]
+        , div [ class "column is-centered" ]
+            [ span [ class "subtitle is-6" ] [ text user.username ] ]
         ]
 
 

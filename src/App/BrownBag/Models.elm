@@ -15,3 +15,15 @@ type alias BrownBag =
     , status : Status
     , user : User
     }
+
+
+type alias BrownbagModel =
+    { loading : Bool
+    , brownbags : List BrownBag
+    , undone : List User
+    }
+
+
+initialModel : BrownbagModel
+initialModel =
+    BrownbagModel False [] []
