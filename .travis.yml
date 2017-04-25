@@ -6,7 +6,6 @@ cache:
 
 os:
   - linux
-  - osx
 
 env:
   matrix:
@@ -14,9 +13,6 @@ env:
     - ELM_VERSION=0.18.0 TARGET_NODE_VERSION=4.0
 
 before_install:
-  - if [ ${TRAVIS_OS_NAME} == "osx" ];
-    then brew update; brew install nvm; mkdir ~/.nvm; export NVM_DIR=~/.nvm; source $(brew --prefix nvm)/nvm.sh;
-    fi
   - echo -e "Host github.com\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
 
 install:
