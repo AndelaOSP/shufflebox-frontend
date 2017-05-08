@@ -1,5 +1,6 @@
 node_modules
 elm-stuff
-dist
+dist/*.js
+dist/*.map
 npm-debug.log
 .vscode

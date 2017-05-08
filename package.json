@@ -6,8 +6,9 @@
   "scripts": {
     "postinstall": "npm run build",
     "test": "elm-test tests/TestRunner.elm",
-    "build": "NODE_ENV=production webpack -p",
+    "build": "NODE_ENV=production webpack",
     "watch": "webpack --watch",
+    "start": "node server.js",
     "dev": "webpack-dev-server --port 3000 --hot --history-api-fallback --inline"
   },
   "repository": {
@@ -21,7 +22,12 @@
   },
   "homepage": "https://github.com/andelaosp/shufflebox-frontend#readme",
   "dependencies": {
-    "bulma": "^0.4.0"
+    "bulma": "^0.4.0",
+    "compression": "^1.6.2",
+    "compression-webpack-plugin": "^0.3.2",
+    "express": "^4.15.2",
+    "html-webpack-plugin": "^2.28.0",
+    "sw-precache-webpack-plugin": "^0.9.1"
   },
   "devDependencies": {
     "autoprefixer": "^6.7.0",
