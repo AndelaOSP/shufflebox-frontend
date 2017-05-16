@@ -30,11 +30,10 @@ previous brownbags =
     let
         doneBrownbags =
             brownbags
-                |> List.filter (\p -> p.status == Done)
+                |> List.filter (\b -> b.status == Done)
     in
         div [ class "feed--card previous" ]
             [ h1 [] [ text "Previous Brown Bags" ]
-            , p [] [ text "27 Jan - 20 Mar" ]
             , div [ class "previous-list" ] [ brownbagsList doneBrownbags ]
             ]
 
@@ -44,7 +43,7 @@ upcoming model =
     let
         maybeUpcoming =
             model.brownbags
-                |> List.filter (\p -> p.status == NextInLine)
+                |> List.filter (\b -> b.status == NextInLine)
                 |> List.head
     in
         case maybeUpcoming of
