@@ -1,7 +1,7 @@
 module App.Common.SideNav exposing (sideNav)
 
 import Html exposing (..)
-import Html.Attributes exposing (class)
+import Html.Attributes exposing (..)
 
 
 sideNav : Html msg
@@ -10,6 +10,11 @@ sideNav =
         [ div [ class "columns header" ]
             [ div [ class "column is-2" ] []
             , nav [ class "column is-10" ]
-                [ text "What is your next event?" ]
+                [
+                  img [
+                    src "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTL6mL82lmkpq6LY4xvBS2lpYmTjT5S8KuYzhu52C7FcYfbghfV"
+                  ][]
+                , text " What is your next event?" ]
             ]
         ]
+

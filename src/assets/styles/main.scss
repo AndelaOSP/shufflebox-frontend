@@ -39,6 +39,11 @@ html {
               nav {
                 height: $nav-height;
                 background-color: $light-blue;
+
+                img {
+                  height: $nav-height;
+                  margin: -12px 6px -20px -12px;
+                }
               }
             }
           }
