@@ -2,7 +2,6 @@ module App.Common.Nav exposing (navBar)
 
 import Html exposing (..)
 import Html.Attributes exposing (..)
-import Common.Utils exposing (brandUrl)
 import Common.Utils.Html exposing (link, transformerLink)
 import App.Messages exposing (Msg(..))
 import App.BrownBag.Messages as Brownbag
@@ -17,17 +16,10 @@ navBar =
         [ div [ class "list columns is-two-thirds" ]
             [ ul []
                 [ li [] [ brownBagsLink ]
-                , li [] [ secretSantaLink ]
                 , li [] [ hangoutsLink ]
+                , li [] [ secretSantaLink ]
                 ]
             ]
-          -- , div [ class "image" ]
-          --     [ img
-          --         [ src brandUrl
-          --         , width 50
-          --         ]
-          --         []
-          --     ]
         ]
 
 

@@ -1,7 +1,7 @@
 module App.Hangouts.View exposing (view)
 
 import Html exposing (..)
-import Paginate exposing (..)
+import Paginate
 import Html.Attributes exposing (..)
 import Html.Events exposing (onClick)
 import App.Hangouts.Models exposing (HangoutModel, Hangout, Group)
@@ -15,7 +15,7 @@ view hangoutModel =
         buttonClass =
             "button is-primary is-outlined"
 
-        isShuffling =
+        canLoad =
             if hangoutModel.loading then
                 buttonClass ++ "is-loading"
             else
@@ -39,7 +39,7 @@ view hangoutModel =
                     [ i [ class "fa fa-chevron-right" ] [] ]
                 ]
             , div [ class "hangout--button" ]
-                [ button [ onClick ShuffleHangouts, class isShuffling ]
+                [ button [ onClick ShuffleHangouts, class canLoad ]
                     [ text "SHUFFLE" ]
                 ]
             ]

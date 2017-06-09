@@ -26,6 +26,11 @@ baseUrl =
     "http://127.0.0.1:8000/api"
 
 
+gitRepo : String
+gitRepo =
+    "https://github.com/AndelaOSP/shufflebox-frontend"
+
+
 isJust : Maybe a -> Bool
 isJust aMaybe =
     case aMaybe of
